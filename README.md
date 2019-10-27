@@ -1,7 +1,7 @@
 # TheMudkips
 CS1D Project #2 : Let's Play NBA Basketball
 
-![alt text](https://static.pokemonpets.com/images/monsters-images-800-800/258-Mudkip.png)
+![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkK-nzMJe44XYwA2h1E5MS-UkwBSq1HVyaX6G4JZLlE7lXI0m-A&s)
 
 
 [![Project 1 Backlog](https://img.shields.io/badge/Doc-Backlog-blueviolet)](https://docs.google.com/document/d/1Uloalm4N23jrveC5pWDsp8o2K5NZYLJYDHXay5Kz75M/edit?usp=sharing)
