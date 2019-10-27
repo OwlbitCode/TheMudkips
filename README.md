@@ -1,7 +1,5 @@
 # TheMudkips
-## CS1D Project #2 : Let's Play NBA Basketball
-
- :basketball:
+## CS1D Project #2 : Let's Play NBA Basketball :basketball:
 
 ![alt text](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZkK-nzMJe44XYwA2h1E5MS-UkwBSq1HVyaX6G4JZLlE7lXI0m-A&s)
 
