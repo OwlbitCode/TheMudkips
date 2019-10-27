@@ -11,6 +11,4 @@
 
 [![Project Mudkip Coding Standards and Team Rules](https://img.shields.io/badge/Doc-Coding%20Standards%20&%20Team%20Rules-blueviolet)](https://docs.google.com/document/d/1s3WxL0bcybaW1lAT5KJSETrHcL3sjnYu4u-zMvQ8Kew/edit?usp=sharing)
 
-[![Agile Tool](https://img.shields.io/badge/Doc-Agile%20Tool-blueviolet)](https://zube.io/cs1c-5/cs1d-european-vacation/w/workspace-1/kanban)
-
 [![Project 2 samples](https://img.shields.io/badge/Doc-SampleResources-lightgrey)](https://docs.google.com/document/d/1VpKW2zboCQX1sOceHWGCypHpiQBVhab_-NXT_T88ErU/edit?usp=sharing)
