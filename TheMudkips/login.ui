@@ -337,10 +337,34 @@ color: white;</string>
     <string>View NBA Information</string>
    </property>
   </widget>
+  <widget class="QLabel" name="errorLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>225</y>
+     <width>301</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:red;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>backgroundPic</zorder>
   <zorder>titleLabel</zorder>
   <zorder>loginGroupBox</zorder>
   <zorder>nbaInfoButton</zorder>
+  <zorder>errorLabel</zorder>
  </widget>
  <resources>
   <include location="images.qrc"/>

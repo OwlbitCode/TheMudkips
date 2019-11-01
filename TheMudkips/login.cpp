@@ -59,23 +59,38 @@ void Login::on_loginButton_clicked()
     username = ui->usernameLineEdit->text();
     password = ui->passwordLineEdit->text();
 
+    // Swap below if statements when changing functionality
+    //if(username == "fan" && password == "123")
     if(username == "fan")
     {
-        ui -> passwordLineEdit -> setText("");
-        ui -> usernameLineEdit -> setText("");
+        ui->passwordLineEdit->setText("");
+        ui->usernameLineEdit->setText("");
+
+        ui->errorLabel->setText("");
 
         connectToDB();
         vacationWindow = new Vacation();
         vacationWindow->show();
     }
+    // Swap below if statements when changing functionality
+    //else if(username == "admin" && password == "456")
     else if(username == "admin")
     {
-        ui -> passwordLineEdit -> setText("");
-        ui -> usernameLineEdit -> setText("");
+        ui->passwordLineEdit->setText("");
+        ui->usernameLineEdit->setText("");
+
+        ui->errorLabel->setText("");
 
         connectToDB();
         adminWindow = new Admin();
         adminWindow->show();
+    }
+    else
+    {
+
+        ui->errorLabel->setText("** Invalid Username or Password");
+        ui->passwordLineEdit->setText("");
+        ui->usernameLineEdit->setText("");
     }
 }
 
