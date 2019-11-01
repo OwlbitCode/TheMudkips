@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/mudkiplogin.jpg</file>
+        <file>images/Mudkips.jpg</file>
+        <file>images/passwordIcon.png</file>
+        <file>images/usernameIcon.png</file>
+    </qresource>
+</RCC>
