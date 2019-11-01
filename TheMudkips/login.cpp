@@ -44,6 +44,20 @@ void Login::connectToDB()
     }
 }
 
+/****************************************************************************
+ * METHOD - on_nbaInfoButton_clicked
+ * --------------------------------------------------------------------------
+ * This method creates and opens a database connection and displays a
+ * qDebug message that the database access is open.  This method is used
+ * to open a window (no valid login required) to the NBA information window.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      No parameters are required.
+ *
+ * POST-CONDITIONS
+ *      ==> Returns nothing.
+ *      ==> Creates and connects to SQLite database if not open
+ ***************************************************************************/
 void Login::on_nbaInfoButton_clicked()
 {
     connectToDB();
@@ -51,6 +65,22 @@ void Login::on_nbaInfoButton_clicked()
     nbaWindow->show();
 }
 
+/****************************************************************************
+ * METHOD - on_loginButton_clicked
+ * --------------------------------------------------------------------------
+ * This method creates and opens a database connection and displays a
+ * qDebug message that the database access is open.  This method is used
+ * to validate a login name and password.  If the combination is valid,
+ * it opens the window that it is valid for.  If the login name and/or
+ * password is invalid, a message is displayed that it was invalid.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      No parameters are required.
+ *
+ * POST-CONDITIONS
+ *      ==> Returns nothing.
+ *      ==> Creates and connects to SQLite database if not open
+ ***************************************************************************/
 void Login::on_loginButton_clicked()
 {
     QString username;   //IN, CALC - username
@@ -87,24 +117,61 @@ void Login::on_loginButton_clicked()
     }
     else
     {
-
         ui->errorLabel->setText("** Invalid Username or Password");
         ui->passwordLineEdit->setText("");
         ui->usernameLineEdit->setText("");
     }
 }
 
+/****************************************************************************
+ * METHOD - on_exitProgramButton_clicked
+ * --------------------------------------------------------------------------
+ * This method closes database connection and displays a qDebug message
+ * that the database access is closed.  This method is used
+ * to close the login window (thus close the entire program).
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      No parameters are required.
+ *
+ * POST-CONDITIONS
+ *      ==> Returns nothing.
+ *      ==> Closes the connection to SQLite database if open
+ ***************************************************************************/
 void Login::on_exitProgramButton_clicked()
 {
     myDB.closeDB();
     this->close();
 }
 
+/****************************************************************************
+ * METHOD - on_usernameLineEdit_returnPressed
+ * --------------------------------------------------------------------------
+ * This method acts the same as a button push, but executes when the
+ * enter key is pressed in the login name line.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      No parameters are required.
+ *
+ * POST-CONDITIONS
+ *      ==> Returns nothing.
+ ***************************************************************************/
 void Login::on_usernameLineEdit_returnPressed()
 {
     on_loginButton_clicked();
 }
 
+/****************************************************************************
+ * METHOD - on_passwordLineEdit_returnPressed
+ * --------------------------------------------------------------------------
+ * This method acts the same as a button push, but executes when the
+ * enter key is pressed in the password name line.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      No parameters are required.
+ *
+ * POST-CONDITIONS
+ *      ==> Returns nothing.
+ ***************************************************************************/
 void Login::on_passwordLineEdit_returnPressed()
 {
     on_loginButton_clicked();
