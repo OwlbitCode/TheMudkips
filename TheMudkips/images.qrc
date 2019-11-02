@@ -4,5 +4,6 @@
         <file>images/Mudkips.jpg</file>
         <file>images/passwordIcon.png</file>
         <file>images/usernameIcon.png</file>
+        <file>images/souvMudkip.png</file>
     </qresource>
 </RCC>
