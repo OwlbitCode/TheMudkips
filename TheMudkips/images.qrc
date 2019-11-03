@@ -5,5 +5,6 @@
         <file>images/passwordIcon.png</file>
         <file>images/usernameIcon.png</file>
         <file>images/souvMudkip.png</file>
+        <file>images/pokemonTrainers.jpg</file>
     </qresource>
 </RCC>

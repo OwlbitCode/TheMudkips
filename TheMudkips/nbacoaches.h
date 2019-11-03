@@ -2,6 +2,11 @@
 #define NBACOACHES_H
 
 #include <QWidget>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QSqlQueryModel>
+#include <QSqlError>
+#include <QDebug>
 
 namespace Ui {
 class nbaCoaches;
@@ -15,8 +20,14 @@ public:
     explicit nbaCoaches(QWidget *parent = nullptr);
     ~nbaCoaches();
 
+private slots:
+    void on_viewAllButton_clicked();
+
+    void on_coachCB_currentIndexChanged();
+
 private:
     Ui::nbaCoaches *ui;
+    QSqlDatabase myDB;
 };
 
 #endif // NBACOACHES_H

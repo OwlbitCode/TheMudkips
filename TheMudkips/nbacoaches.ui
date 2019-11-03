@@ -13,20 +13,109 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QTableView" name="coachesTV">
+   <property name="geometry">
+    <rect>
+     <x>6</x>
+     <y>42</y>
+     <width>355</width>
+     <height>403</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>240</y>
-     <width>55</width>
-     <height>16</height>
+     <x>6</x>
+     <y>0</y>
+     <width>355</width>
+     <height>43</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 20pt &quot;MS Shell Dlg 2&quot;;
+background:rgb(170, 170, 255)</string>
+   </property>
    <property name="text">
-    <string>coach</string>
+    <string>Meet our Coaches </string>
    </property>
   </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>361</x>
+     <y>-18</y>
+     <width>325</width>
+     <height>463</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QComboBox" name="coachCB">
+    <property name="geometry">
+     <rect>
+      <x>18</x>
+      <y>198</y>
+      <width>157</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="viewAllButton">
+    <property name="geometry">
+     <rect>
+      <x>18</x>
+      <y>228</y>
+      <width>70</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>View All</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="selectTeamLabel">
+    <property name="geometry">
+     <rect>
+      <x>18</x>
+      <y>162</y>
+      <width>157</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+text: rgb(255, 255, 0)</string>
+    </property>
+    <property name="text">
+     <string>Select by Team</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="backgroundlabel">
+    <property name="geometry">
+     <rect>
+      <x>-185</x>
+      <y>-103</y>
+      <width>895</width>
+      <height>715</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/images/pokemonTrainers.jpg</pixmap>
+    </property>
+   </widget>
+   <zorder>backgroundlabel</zorder>
+   <zorder>coachCB</zorder>
+   <zorder>viewAllButton</zorder>
+   <zorder>selectTeamLabel</zorder>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>
