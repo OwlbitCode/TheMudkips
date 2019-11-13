@@ -9,9 +9,9 @@ nbaCoaches::nbaCoaches(QWidget *parent) :
 
 
 
-    ui->label->setStyleSheet("QLabel { background-color : #8a2be2; color : white; font: bold;}");
+//    ui->label->setStyleSheet("QLabel { background-color : #8a2be2; color : white; font: bold;}");
 
-    ui->selectTeamLabel->setStyleSheet("QLabel { background-color : #8a2be2; color : white; font: bold;}");
+//    ui->selectTeamLabel->setStyleSheet("QLabel {  color : black; font: bold;}");
 
     ui->viewAllButton->setStyleSheet("QPushButton { background-color : #8a2be2; color : white; font: bold;}");
     //POPULATE THE item name combo box

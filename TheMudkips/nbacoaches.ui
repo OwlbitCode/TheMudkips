@@ -37,7 +37,7 @@
 background:rgb(170, 170, 255)</string>
    </property>
    <property name="text">
-    <string>Meet our Coaches </string>
+    <string>View the Team Coaches </string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -52,46 +52,6 @@ background:rgb(170, 170, 255)</string>
    <property name="title">
     <string/>
    </property>
-   <widget class="QComboBox" name="coachCB">
-    <property name="geometry">
-     <rect>
-      <x>18</x>
-      <y>198</y>
-      <width>157</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="viewAllButton">
-    <property name="geometry">
-     <rect>
-      <x>18</x>
-      <y>228</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>View All</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="selectTeamLabel">
-    <property name="geometry">
-     <rect>
-      <x>18</x>
-      <y>162</y>
-      <width>157</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
-text: rgb(255, 255, 0)</string>
-    </property>
-    <property name="text">
-     <string>Select by Team</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="backgroundlabel">
     <property name="geometry">
      <rect>
@@ -108,10 +68,63 @@ text: rgb(255, 255, 0)</string>
      <pixmap resource="images.qrc">:/images/pokemonTrainers.jpg</pixmap>
     </property>
    </widget>
-   <zorder>backgroundlabel</zorder>
-   <zorder>coachCB</zorder>
-   <zorder>viewAllButton</zorder>
-   <zorder>selectTeamLabel</zorder>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>130</y>
+      <width>201</width>
+      <height>75</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: rgba(179, 208, 229, 0.5);
+color:black;</string>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="selectTeamLabel">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>157</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 75 12pt &quot;MS Shell Dlg 2&quot;;
+text: rgb(255, 255, 0)</string>
+     </property>
+     <property name="text">
+      <string>Select by Team</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="coachCB">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>181</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="viewAllButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>210</y>
+      <width>181</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>View ALL Teams</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
