@@ -2,6 +2,9 @@
 #define NBATEAMS_H
 
 #include <QWidget>
+#include "QtSql"
+#include "databasemanager.h"
+#include "QtDebug"
 
 namespace Ui {
 class nbaTeams;
@@ -24,6 +27,7 @@ private slots:
 
 private:
     Ui::nbaTeams *ui;
+    QSqlDatabase myDB;
 };
 
 #endif // NBATEAMS_H

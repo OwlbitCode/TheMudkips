@@ -16,12 +16,21 @@
   <widget class="QTableView" name="dataView">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>170</y>
-     <width>561</width>
-     <height>192</height>
+     <x>15</x>
+     <y>151</y>
+     <width>621</width>
+     <height>281</height>
     </rect>
    </property>
+   <property name="alternatingRowColors">
+    <bool>true</bool>
+   </property>
+   <property name="sortingEnabled">
+    <bool>true</bool>
+   </property>
+   <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+    <bool>false</bool>
+   </attribute>
   </widget>
   <widget class="QSplitter" name="splitter">
    <property name="geometry">
@@ -29,7 +38,7 @@
      <x>140</x>
      <y>0</y>
      <width>381</width>
-     <height>161</height>
+     <height>141</height>
     </rect>
    </property>
    <property name="orientation">

@@ -1,14 +1,13 @@
 #include "nbateams.h"
 #include "ui_nbateams.h"
-#include "QtSql"
-#include "databasemanager.h"
-#include "QtDebug"
+
 
 nbaTeams::nbaTeams(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::nbaTeams)
 {
     ui->setupUi(this);
+    myDB = QSqlDatabase::database();
 }
 
 nbaTeams::~nbaTeams()
@@ -26,28 +25,21 @@ void nbaTeams::on_EasternComboBox_activated(const QString &arg1)
         QSqlQueryModel* model = new QSqlQueryModel();
 
         qDebug() << team;
-        databaseManager db;
-        db.openDB();
 
-        QSqlQuery* qry = new QSqlQuery(db.currentDB());
-
-        qry->prepare("select * from 'Team Info' where `Conference` = 'Eastern'");
+        QSqlQuery * qry = new QSqlQuery(myDB);
+        qry->prepare("select * from 'Team Info' where `Conference` = 'Eastern' order by `Team Name`");
         qry->exec();
 
         model->setQuery(*qry);
         ui->dataView->setModel(model);
 
-        db.closeDB();
     }
     else
     {
         QSqlQueryModel* model = new QSqlQueryModel();
 
         qDebug() << team;
-        databaseManager db;
-        db.openDB();
-
-        QSqlQuery* qry = new QSqlQuery(db.currentDB());
+        QSqlQuery * qry = new QSqlQuery(myDB);
 
 
         qry->prepare("select * from 'Team Info' where `Team Name` = '"+team+"'");
@@ -55,8 +47,6 @@ void nbaTeams::on_EasternComboBox_activated(const QString &arg1)
 
         model->setQuery(*qry);
         ui->dataView->setModel(model);
-
-        db.closeDB();
     }
 }
 
@@ -71,35 +61,26 @@ void nbaTeams::on_westernComboBox_activated(const QString &arg1)
         qDebug() << "ASD";
         QSqlQueryModel* model = new QSqlQueryModel();
 
-        databaseManager db;
-        db.openDB();
-
-        QSqlQuery* qry = new QSqlQuery(db.currentDB());
+        QSqlQuery * qry = new QSqlQuery(myDB);
 
 
-        qry->prepare("select * from 'Team Info' where `Conference` = 'Western'");
+        qry->prepare("select * from 'Team Info' where `Conference` = 'Western' order by `Team Name`");
         qry->exec();
 
         model->setQuery(*qry);
         ui->dataView->setModel(model);
-        db.closeDB();
     }
     else
     {
         ui->dataView->setSortingEnabled(true);
         QSqlQueryModel* model = new QSqlQueryModel();
 
-        databaseManager db;
-        db.openDB();
-
-        QSqlQuery* qry = new QSqlQuery(db.currentDB());
+        QSqlQuery * qry = new QSqlQuery(myDB);
 
         qry->prepare("select * from 'Team Info' where `Team Name` = '"+team+"'");
         qry->exec();
 
         model->setQuery(*qry);
         ui->dataView->setModel(model);
-
-        db.closeDB();
     }
 }
