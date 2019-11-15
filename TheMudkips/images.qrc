@@ -2,9 +2,13 @@
     <qresource prefix="/">
         <file>images/mudkiplogin.jpg</file>
         <file>images/Mudkips.jpg</file>
+        <file>images/packageBG.jpg</file>
         <file>images/passwordIcon.png</file>
-        <file>images/usernameIcon.png</file>
-        <file>images/souvMudkip.png</file>
         <file>images/pokemonTrainers.jpg</file>
+        <file>images/souvMudkip.png</file>
+        <file>images/usernameIcon.png</file>
+        <file>images/shinyB.png</file>
+        <file>images/mudkipA.png</file>
+        <file>images/eggC.png</file>
     </qresource>
 </RCC>

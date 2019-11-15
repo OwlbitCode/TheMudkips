@@ -38,7 +38,15 @@ SOURCES += \
     nbaarenas.cpp \
     nbaconfdiv.cpp \
     nbacoaches.cpp \
-    nbasouvenirs.cpp
+    nbasouvenirs.cpp \
+    aarena.cpp \
+    vsimulation.cpp \
+    vmst.cpp \
+    vdfs.cpp \
+    vbfs.cpp \
+    vpackagea.cpp \
+    vpackagec.cpp \
+    vpackageb.cpp
 
 HEADERS += \
     nbainfo.h \
@@ -52,7 +60,15 @@ HEADERS += \
     nbaarenas.h \
     nbaconfdiv.h \
     nbacoaches.h \
-    nbasouvenirs.h
+    nbasouvenirs.h \
+    aarena.h \
+    vsimulation.h \
+    vmst.h \
+    vdfs.h \
+    vbfs.h \
+    vpackageb.h \
+    vpackagea.h \
+    vpackagec.h
 
 FORMS += \
     nbainfo.ui \
@@ -65,7 +81,15 @@ FORMS += \
     nbaarenas.ui \
     nbaconfdiv.ui \
     nbacoaches.ui \
-    nbasouvenirs.ui
+    nbasouvenirs.ui \
+    aarena.ui \
+    vsimulation.ui \
+    vmst.ui \
+    vdfs.ui \
+    vbfs.ui \
+    vpackagea.ui \
+    vpackagec.ui \
+    vpackageb.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

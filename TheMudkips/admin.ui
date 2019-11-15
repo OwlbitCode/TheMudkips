@@ -93,7 +93,7 @@ color: black;</string>
     <rect>
      <x>120</x>
      <y>10</y>
-     <width>200</width>
+     <width>170</width>
      <height>30</height>
     </rect>
    </property>
@@ -116,10 +116,10 @@ color: white;</string>
     <string>Team Database</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="page2Button">
+  <widget class="QPushButton" name="page3Button">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>480</x>
      <y>10</y>
      <width>200</width>
      <height>30</height>
@@ -170,6 +170,34 @@ color: black;</string>
    </property>
    <property name="text">
     <string>EXIT</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="page2Button">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>10</y>
+     <width>170</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:#8a2be2;
+border-style: solid;
+border-color: black;
+border-width: 2px;
+border-radius: 5px;
+color: white;</string>
+   </property>
+   <property name="text">
+    <string>Arena Database</string>
    </property>
   </widget>
  </widget>

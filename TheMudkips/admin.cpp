@@ -9,7 +9,8 @@ Admin::Admin(QWidget *parent) :
 
     // Create a stacked widget index for seperate QWidget pages
     ui->stackedWidget->insertWidget(1, &teamWindow);
-    ui->stackedWidget->insertWidget(2, &souvenirsWindow);
+    ui->stackedWidget->insertWidget(2, &arenaWindow);
+    ui->stackedWidget->insertWidget(3, &souvenirsWindow);
 }
 
 Admin::~Admin()
@@ -32,7 +33,14 @@ void Admin::on_page2Button_clicked()
     ui->stackedWidget->setCurrentIndex(2);
 }
 
+void Admin::on_page3Button_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
 void Admin::on_exitButton_clicked()
 {
     this->close();
 }
+
+

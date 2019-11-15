@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "ateam.h"
+#include "aarena.h"
 #include "asouvenirs.h"
 
 namespace Ui {
@@ -27,10 +28,13 @@ private slots:
 
     void on_exitButton_clicked();
 
+    void on_page3Button_clicked();
+
 private:
     Ui::Admin *ui;
 
     aTeam teamWindow;
+    aArena arenaWindow;
     aSouvenirs souvenirsWindow;
 };
 
