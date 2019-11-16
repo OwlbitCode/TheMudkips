@@ -16,16 +16,14 @@ class nbaConfDiv : public QWidget
 
 public:
     explicit nbaConfDiv(QWidget *parent = nullptr);
+
     ~nbaConfDiv();
 
 private slots:
-    void on_TeamComboBox_activated(const QString &arg1);
 
-    void on_teamComboBox_activated(const QString &arg1);
+    void on_pushButton_2_clicked();
 
-    void on_sortNameButton_clicked();
-
-    void on_sortYearButton_clicked();
+    void on_pushButton_clicked();
 
 private:
     Ui::nbaConfDiv *ui;

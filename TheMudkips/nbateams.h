@@ -16,18 +16,15 @@ class nbaTeams : public QWidget
 
 public:
     explicit nbaTeams(QWidget *parent = nullptr);
-
     ~nbaTeams();
 
 private slots:
 
-    void on_EasternComboBox_activated(const QString &arg1);
+    void on_sortNameButton_clicked();
 
-    void on_westernComboBox_activated(const QString &arg1);
+    void on_sortYearButton_clicked();
 
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_clicked();
+    void on_teamComboBox_activated(const QString &arg1);
 
 private:
     Ui::nbaTeams *ui;
