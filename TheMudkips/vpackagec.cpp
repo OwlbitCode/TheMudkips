@@ -108,16 +108,54 @@ void vPackageC::defaultComboBoxView()
 }
 
 /****************************************************************************
- * sortTeamList
+ * sortTeamNormal
  * --------------------------------------------------------------------------
  * Uses dijkstra's algorithm to create a dynamic array for team order
- * and distance traveled using customList plus startTeam.
+ * and distance traveled using customList plus startTeam.  This is the
+ * NORMAL PACKAGE.  Order is fan choice.
  * --------------------------------------------------------------------------
  * POST-CONDITIONS
  *      ==> Creates sorted dynamic arrays for teams and destinations.
  ***************************************************************************/
 // Display dynamic sorted array that will be passed in list
-void vPackageC::sortTeamList()
+void vPackageC::sortTeamNormal()
+{
+//    qDebug() << "size: " << teamNum;
+//    QString temp; // used as temporary storage while swapping
+    sortedTeams = new QString[teamNum]; // new object for dynamic
+                                        // team array
+    sortedDistance = new int[teamNum];  // new object for dynamic
+                                        // distance array
+
+    /************************************************************************
+     * PROCESS: Copy contents of customList (fan's selected teams)
+     *          into dynamic array.
+     ***********************************************************************/
+    // Put startTeam at index 0
+    sortedTeams[0] = startTeam;
+    sortedDistance[0] = 0;
+
+    // Copy teams from customList to dynamic array (sortedTeams)
+    for(int i = 1; i < teamNum; i++)
+    {
+        // customList needs i-1 because it starts at 0, but the iteration
+        // starts at 1 because [0] is where startTeam was placed.
+        sortedTeams[i] = customList.at(i-1)->text();
+    }
+}
+
+/****************************************************************************
+ * sortTeamOptimize
+ * --------------------------------------------------------------------------
+ * Uses dijkstra's algorithm to create a dynamic array for team order
+ * and distance traveled using customList plus startTeam.  This is the
+ * OPTIMIZED PACKAGE.  Shortest distance, not fan choice.
+ * --------------------------------------------------------------------------
+ * POST-CONDITIONS
+ *      ==> Creates sorted dynamic arrays for teams and destinations.
+ ***************************************************************************/
+// Display dynamic sorted array that will be passed in list
+void vPackageC::sortTeamOptimize()
 {
 //    qDebug() << "size: " << teamNum;
 //    QString temp; // used as temporary storage while swapping
@@ -208,7 +246,19 @@ void vPackageC::on_confirmButton_clicked()
     teamNum++; // Need to add 1 to count the startTeam
     startTeam = ui->startTeam->currentText();
 
-    sortTeamList();
+    // Used to determine which algorithm to use
+    // If checkbox is checked (true)
+    if(ui->optimizeBox->isChecked())
+    {
+        qDebug() << "Optimization: true";
+        sortTeamOptimize();
+    }
+    // If checkbox is unchecked (false)
+    else
+    {
+        qDebug() << "Optimization: false";
+        sortTeamNormal();
+    }
 
     // Load all selected, sorted teams into list view
     for(int i = 0; i < teamNum; i++)

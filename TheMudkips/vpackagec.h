@@ -31,8 +31,13 @@ public:
     void defaultComboBoxView();
     //!< Sets default combobox view using values from the database.
 
-    void sortTeamList();
+    void sortTeamOptimize();
     //!< Creates the sorted dynamic team and destination arrays
+    //!< OPTIMIZED: shortest distance, not fan choice
+
+    void sortTeamNormal();
+    //!< Creates the sorted dynamic team and destination arrays
+    //!< NOT OPTIMIZED: fan choice of order
 
 private slots:
     void on_cancelButton_clicked();

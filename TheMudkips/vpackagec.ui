@@ -60,7 +60,7 @@ color: black;</string>
      <x>10</x>
      <y>160</y>
      <width>230</width>
-     <height>331</height>
+     <height>301</height>
     </rect>
    </property>
    <property name="selectionMode">
@@ -238,6 +238,26 @@ color: black;</string>
      <bool>true</bool>
     </property>
    </widget>
+  </widget>
+  <widget class="QCheckBox" name="optimizeBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>470</y>
+     <width>231</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Vacation Optimization Option</string>
+   </property>
   </widget>
  </widget>
  <resources/>
