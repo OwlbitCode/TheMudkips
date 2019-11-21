@@ -43,6 +43,8 @@ vBFS::vBFS(QWidget *parent) :
     createMatrix();
 
     BFS();
+
+    ui->distanceLine->setText(QString::number(tDistance,'f', 2));
 }
 
 vBFS::~vBFS()
