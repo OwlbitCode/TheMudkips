@@ -27,9 +27,9 @@ nbaSouvenirs::nbaSouvenirs(QWidget *parent) :
     QSqlQuery * qry = new QSqlQuery(myDB);
 
     // Set up the query to create ordered list of destination cities
-    qry->prepare("SELECT DISTINCT `Team Name` "
-                 "FROM Souvenirs "
-                 "ORDER BY `Team Name` COLLATE NOCASE ASC ");
+    qry->prepare("SELECT DISTINCT `Beg Team` "
+                 "FROM Distances "
+                 "ORDER BY `Beg Team` COLLATE NOCASE ASC ");
 
     // Execute query if valid
     if(qry->exec())
@@ -82,33 +82,23 @@ nbaSouvenirs::~nbaSouvenirs()
 void nbaSouvenirs::on_teamTable_currentTextChanged(const QString &currentText)
 {
     QString teamName = currentText;
+    QString tableName = teamName + " Store";
 
     // Display current team selected in line
     ui->teamLine->setText(teamName);
 
     // Create new database query
-    QSqlQuery * qry = new QSqlQuery(myDB);
+    QSqlQuery * sQry = new QSqlQuery(myDB);
+    QSqlQueryModel * model = new QSqlQueryModel();
 
     // Set up the query to create ordered list of NBA teams
-    qry->prepare("SELECT * "
-                 "FROM Souvenirs "
-                 "ORDER BY `Team Name` COLLATE NOCASE ASC ");
+    sQry->prepare("SELECT * "
+                  "FROM '"+tableName+"' ");
+    sQry->exec();
+    model->setQuery(*sQry);
+    ui->souvenirTable->setModel(model);
 
-    // Execute query if valid
-    if(qry->exec())
-    {
-        // Populating line text
-        while(qry->next())
-        {
-            teamName = qry->value(0).toString();
-            ui->bbLine->setText(QString::number(qry->value(1).toFloat(), 'f', 2));
-            ui->penLine->setText(QString::number(qry->value(2).toFloat(), 'f', 2));
-            ui->picLine->setText(QString::number(qry->value(3).toFloat(), 'f', 2));
-            ui->jerseyLine->setText(QString::number(qry->value(4).toFloat(), 'f', 2));
-        }
-    }
-    else
-    {
-        qDebug() << ("nbaSouvenir Error: qry failed in defaultview().");
-    }
+    // set table properties
+    ui->souvenirTable->setColumnWidth(0, 200);
+    ui->souvenirTable->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
