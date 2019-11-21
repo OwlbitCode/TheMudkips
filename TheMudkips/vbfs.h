@@ -37,10 +37,8 @@ public:
     //!< Populates adjacency matrix with edges
 
     void BFS();
-    //!< ...
-
-
-    bool sortedbyWeight(const std::tuple<int, int, float>& a, const std::tuple<int, int, float>& b);
+    //!< Do the breath first search and display to list
+    //!< Also calculate total distance and display
 
 private:
     Ui::vBFS *ui;
@@ -51,10 +49,10 @@ private:
     float   distance;       /*!< distance between u and v    : wt   */
     int     numTeams;       /*!< number of teams             : V    */
     int     rootIndex;      /*!< starting team index for BFS : root */
-    int     tDistance;      // total distance
+    int     tDistance;      /*!< bfs total distance */
 
     std::string *teamList;  /*!< array (master) list of team names */
-    float **adj;            /*!< adjacency matrix for weighted edges */
+    float       **adj;            /*!< adjacency matrix for weighted edges */
 
 };
 
