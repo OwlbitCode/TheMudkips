@@ -33,7 +33,6 @@ private slots:
 
 
 
-
 private:
     Ui::vPackageB *ui;
     QSqlDatabase myDB;
