@@ -45,6 +45,9 @@ private:
 
     std::vector<std::pair<int,float>> * adj; //adjacency list poinnter
 
+    //int visited[12]={0};
+
+    int * vis;//declare pointer to vistied array
 };
 
 #endif // VDFS_H

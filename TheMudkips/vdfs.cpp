@@ -13,8 +13,21 @@ vDFS::vDFS(QWidget *parent) :
     bool isFound = false;
     tDistance = 0; //set distance to 0
 
+
+
+
     getNumTeams(); //get number of teams
     qDebug()<< "numTeams: " << numTeams;
+
+    //create dynamic array of visited arrays
+    vis = new int [numTeams];
+
+    //initialize all to 0
+
+    for(int i=0;i<numTeams;i++)
+    {
+        vis[i] = 0;
+    }
 
     // create dynamic master list for team names
     teamList = new std::string [numTeams];
@@ -46,7 +59,10 @@ vDFS::vDFS(QWidget *parent) :
 
 vDFS::~vDFS()
 {
+
+    delete [] teamList;
     delete ui;
+
 }
 
 void vDFS::getNumTeams()
@@ -194,16 +210,17 @@ void vDFS::DFS(int start)
 
     qDebug()<<"Start" << start;
 
-static int visited[12]={0};
 int v;
 float wt;
 QString tempStr;  // used for temporary holding a string value
 
-if(visited[start] == 0)
+//static array of visited.
+
+if(vis[start] == 0)
    {
        std::cout << "\tVisiting " << teamList[start] << std::endl << std::endl;
 
-      visited[start] = 1;
+      vis[start] = 1;
 
       tempStr = QString::fromStdString(teamList[start]);
       ui->dfsList->addItem(tempStr);
@@ -218,7 +235,7 @@ if(visited[start] == 0)
                // std::cout<<"Testing wt" << wt;
 
                // std::cout << "\tNow checking: " << teamList[start] << " -> " << teamList[v];
-                if(visited[v] == 0)
+                if(vis[v] == 0)
                 {
                     //std::cout << " - (DISCOVERY EDGE)\n";
                     tDistance = tDistance + wt;
@@ -231,5 +248,7 @@ if(visited[start] == 0)
             }
         }
         std::cout << "\tBack track.\n\n";
-    }
+
+
+}
 
