@@ -22,15 +22,11 @@ public:
     explicit vPackageB(QWidget *parent = nullptr);
     ~vPackageB();
     void defaultPackage();
-    void sortTeam();
 
 private slots:
     void on_cancelButton_clicked();
 
     void on_startButton_clicked();
-
-    void on_confirmButton_clicked();
-
 
 
 private:

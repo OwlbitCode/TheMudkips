@@ -13,19 +13,6 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QListWidget" name="teamList">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>130</y>
-     <width>230</width>
-     <height>361</height>
-    </rect>
-   </property>
-   <property name="selectionMode">
-    <enum>QAbstractItemView::MultiSelection</enum>
-   </property>
-  </widget>
   <widget class="QGroupBox" name="sortedGroup">
    <property name="geometry">
     <rect>
@@ -146,45 +133,6 @@ color: black;</string>
     <string>Detroit Pistons Package</string>
    </property>
   </widget>
-  <widget class="QLabel" name="startingTitle">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>230</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Starting from Detriot Pistons</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="confirmButton">
-   <property name="geometry">
-    <rect>
-     <x>12</x>
-     <y>500</y>
-     <width>230</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color:orange;
-border-style: solid;
-border-color: black;
-border-width: 2px;
-border-radius: 5px;
-color: black;</string>
-   </property>
-   <property name="text">
-    <string>Confirm Selection</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
@@ -204,24 +152,6 @@ color: black;</string>
    </property>
    <property name="text">
     <string>Cancel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="selectTitle">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>100</y>
-     <width>230</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>The teams you will visit below.</string>
    </property>
   </widget>
  </widget>
