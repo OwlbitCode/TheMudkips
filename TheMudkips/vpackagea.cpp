@@ -11,6 +11,9 @@ vPackageA::vPackageA(QWidget *parent) :
     myDB = QSqlDatabase::database();
 
     defaultPackage(); // call default view set up
+
+    // Set right side to disabled
+    ui->sortedGroup->setEnabled(false);
 }
 
 vPackageA::~vPackageA()

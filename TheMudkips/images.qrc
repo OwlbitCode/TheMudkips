@@ -11,5 +11,6 @@
         <file>images/mudkipA.png</file>
         <file>images/eggC.png</file>
         <file>images/nbaTeamMap.png</file>
+        <file>images/nbainfoimg.png</file>
     </qresource>
 </RCC>
