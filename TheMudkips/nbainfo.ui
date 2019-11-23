@@ -29,14 +29,17 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>250</y>
-       <width>55</width>
-       <height>16</height>
+       <x>80</x>
+       <y>70</y>
+       <width>481</width>
+       <height>291</height>
       </rect>
      </property>
      <property name="text">
-      <string>home</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="images.qrc">:/images/nbainfoimg.png</pixmap>
      </property>
     </widget>
    </widget>
@@ -73,7 +76,7 @@
    <property name="title">
     <string/>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>12</x>
@@ -279,6 +282,8 @@ color: black;</string>
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

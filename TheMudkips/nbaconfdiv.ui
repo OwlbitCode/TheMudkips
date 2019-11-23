@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>496</height>
+    <width>650</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableView" name="dataView">
    <property name="geometry">
     <rect>
-     <x>15</x>
-     <y>111</y>
-     <width>661</width>
-     <height>321</height>
+     <x>10</x>
+     <y>90</y>
+     <width>631</width>
+     <height>351</height>
     </rect>
    </property>
    <property name="alternatingRowColors">
@@ -32,28 +32,61 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QSplitter" name="splitter">
+  <widget class="QLabel" name="TitleLabel">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>40</y>
-     <width>251</width>
-     <height>61</height>
+     <x>10</x>
+     <y>0</y>
+     <width>601</width>
+     <height>41</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="text">
-     <string>Eastern Conference</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="text">
-     <string>Southeast Eastern Division</string>
-    </property>
-   </widget>
+   <property name="text">
+    <string>NBA Eastern Conference and Southeast Eastern Division</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>50</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>View Eastern Conference</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>50</y>
+     <width>300</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>View Southeast Eastern Division</string>
+   </property>
   </widget>
  </widget>
  <resources/>
