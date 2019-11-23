@@ -11,6 +11,7 @@ vDFS::vDFS(QWidget *parent) :
     // initialize needed variables
     rootIndex = 0;
     bool isFound = false;
+    tDistance = 0; //set distance to 0
 
     getNumTeams(); //get number of teams
     qDebug()<< "numTeams: " << numTeams;
@@ -30,15 +31,17 @@ vDFS::vDFS(QWidget *parent) :
             rootIndex++;
     }
 
-    //create adjacency list
-
-    // create adj list
+     // create adj list
      adj = new std::vector<std::pair<int,float>>[numTeams];
+
+     createAdjList();
 
      //sort it
 
      //call DFS sort
      DFS(rootIndex);//passing rootIndex to DFS search
+
+     ui->distanceLine->setText(QString::number(tDistance, 'f',2));
 }
 
 vDFS::~vDFS()
@@ -109,6 +112,9 @@ void vDFS::getTeamList()
     {
         qDebug() << ("DFS getTeamList Error: qry failed.");
     }
+
+
+
 }
 
 
@@ -165,6 +171,13 @@ void vDFS::createAdjList()
             // Add weighted edge into adjacency matrix
             adj[sIndex].push_back(std::make_pair(dIndex,distance));
 
+            sort(adj[sIndex].begin(), adj[sIndex].end(),
+                 [](std::pair<int,float> const &a,
+                    std::pair<int,float> &b)
+                    {
+                        return (a.second < b.second);
+                    });
+
         }
     }
     else
@@ -172,26 +185,6 @@ void vDFS::createAdjList()
         qDebug() << ("DFS createMatrix: qry failed.");
     }
 }
-
-    /*
-    for(int i = 0; i < numTeams; i++)
-        {
-            sort(adj[i].begin(), adj[i].end(), sortByWeight); //using sort algorithm (on vector per each array containing pairs postiion & weight) & using comparator to order by smallest (weight).
-        }
-
-    // sort the teams by lowest to highest on weighted edge
-    // using lambda for third argument
-    sort(temp.begin(), temp.end(),
-         [](std::pair<int,float> const &a,
-            std::pair<int,float> &b)
-            {
-                return (std::get<2>(a) < std::get<2>(b));
-            });
-
-
-        g.DFS(adj, 2, 12);
-
-        */
 
 
 void vDFS::DFS(int start)
@@ -202,7 +195,8 @@ void vDFS::DFS(int start)
     qDebug()<<"Start" << start;
 
 static int visited[12]={0};
-int v, wt;
+int v;
+float wt;
 QString tempStr;  // used for temporary holding a string value
 
 if(visited[start] == 0)
@@ -217,21 +211,23 @@ if(visited[start] == 0)
 
             for(auto it = adj[start].begin(); it!=adj[start].end(); it++) //iterate through adj list
             {
-                std::cout <<"INSIDE THE ITERATION";
+               // std::cout <<"INSIDE THE ITERATION";
                 v = it->first;
-                std::cout << "Testing v" << v;
+               // std::cout << "Testing v" << v;
                 wt = it->second;
-                std::cout<<"Testing wt" << wt;
-                //tDistanceA = tDistanceA + wt;
-                std::cout << "\tNow checking: " << teamList[start] << " -> " << teamList[v];
+               // std::cout<<"Testing wt" << wt;
+
+               // std::cout << "\tNow checking: " << teamList[start] << " -> " << teamList[v];
                 if(visited[v] == 0)
                 {
-                    std::cout << " - (DISCOVERY EDGE)\n";
-                    //tDistanceA = tDistanceA + wt;
+                    //std::cout << " - (DISCOVERY EDGE)\n";
+                    tDistance = tDistance + wt;
+                    qDebug()<<"tDistance" << tDistance;
+
                     DFS(v);
                 }
-                else
-                    std::cout << " - (BACK EDGE)\n\n";
+                //else
+                   // std::cout << " - (BACK EDGE)\n\n";
             }
         }
         std::cout << "\tBack track.\n\n";

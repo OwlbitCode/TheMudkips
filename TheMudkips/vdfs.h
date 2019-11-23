@@ -37,7 +37,7 @@ private:
     float   distance;       /*!< distance between u and v    : wt   */
     int     numTeams;       /*!< number of teams             : V    */
     int     rootIndex;      /*!< starting team index for DFS : root */
-    int     tDistance;      /*!< dfs total distance */
+    float   tDistance;      /*!< dfs total distance */
 
     std::string *teamList;  /*!< array (master) list of team names */
 
