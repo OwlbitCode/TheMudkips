@@ -1,32 +1,31 @@
-#ifndef AARENA_H
-#define AARENA_H
+#ifndef ADDTEAM_H
+#define ADDTEAM_H
 
 #include <QWidget>
-#include<iostream>
 #include"databasemanager.h"
 #include<QtSql>
+#include<iostream>
+#include<cctype>
 namespace Ui {
-class aArena;
+class addTeam;
 }
 
-class aArena : public QWidget
+class addTeam : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit aArena(QWidget *parent = nullptr);
-    ~aArena();
+    explicit addTeam(QWidget *parent = nullptr);
+    ~addTeam();
 
 private slots:
     void on_pushButton_clicked();
 
-    void on_pushButton_3_clicked();
-
     void on_pushButton_2_clicked();
 
 private:
-    Ui::aArena *ui;
+    Ui::addTeam *ui;
     QSqlDatabase myDb;
 };
 
-#endif // AARENA_H
+#endif // ADDTEAM_H
