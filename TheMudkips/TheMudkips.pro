@@ -46,7 +46,8 @@ SOURCES += \
     vbfs.cpp \
     vpackagea.cpp \
     vpackagec.cpp \
-    vpackageb.cpp
+    vpackageb.cpp \
+    addteam.cpp
 
 HEADERS += \
     nbainfo.h \
@@ -68,7 +69,8 @@ HEADERS += \
     vbfs.h \
     vpackageb.h \
     vpackagea.h \
-    vpackagec.h
+    vpackagec.h \
+    addteam.h
 
 FORMS += \
     nbainfo.ui \
@@ -89,7 +91,8 @@ FORMS += \
     vbfs.ui \
     vpackagea.ui \
     vpackagec.ui \
-    vpackageb.ui
+    vpackageb.ui \
+    addteam.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
