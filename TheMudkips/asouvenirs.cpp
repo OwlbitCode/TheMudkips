@@ -1,5 +1,6 @@
 #include "asouvenirs.h"
 #include "ui_asouvenirs.h"
+#include "string"
 
 aSouvenirs::aSouvenirs(QWidget *parent) :
     QWidget(parent),
@@ -22,12 +23,12 @@ aSouvenirs::aSouvenirs(QWidget *parent) :
     ui->addMoney->setEnabled(false);
     ui->addSouvenir->setEnabled(false);
 
-    ui->editName->setEnabled(false);
     ui->editMoney->setEnabled(false);
     ui->editSouvenir->setEnabled(false);
+    ui->editComboBox->setEnabled(false);
 
-    ui->deleteName->setEnabled(false);
     ui->deleteSouvenir->setEnabled(false);
+    ui->deleteComboBox->setEnabled(false);
 }
 
 aSouvenirs::~aSouvenirs()
@@ -93,12 +94,38 @@ void aSouvenirs::on_addSouvenir_clicked()
     ui->tableView->setModel(model);
 
     ui->addName->clear();
+
+
+
+    //FOR EDIT COMBO BOX
+    QString editTeam = ui->comboBox->currentText();
+    QSqlQueryModel* editModel = new QSqlQueryModel();
+
+    QSqlQuery * editQry = new QSqlQuery(myDB);
+
+    editQry->prepare("select item from '"+editTeam+"'");
+    editQry->exec();
+
+    editModel->setQuery(*editQry);
+    ui->editComboBox->setModel(editModel);
+    //FOR DELETE COMBO BOX
+    QString deleteTeam = ui->comboBox->currentText();
+    QSqlQueryModel* deleteModel = new QSqlQueryModel();
+
+    QSqlQuery * deleteQry = new QSqlQuery(myDB);
+
+    deleteQry->prepare("select item from '"+deleteTeam+"'");
+    deleteQry->exec();
+
+    deleteModel->setQuery(*deleteQry);
+    ui->deleteComboBox->setModel(deleteModel);
+
 }
 
 void aSouvenirs::on_editSouvenir_clicked()
 {
     QString team = ui->comboBox->currentText();
-    QString name = ui->editName->toPlainText();
+    QString name = ui->editComboBox->currentText();
     double money = ui->editMoney->value();
     //name cant be empty or existing
     //team has to be valid
@@ -115,11 +142,6 @@ void aSouvenirs::on_editSouvenir_clicked()
         return;
     }
 
-    if(name == "")
-    {
-        qWarning() << "EMPTY NAME";
-        return;
-    }
 
     if(money < 0)
     {
@@ -141,14 +163,38 @@ void aSouvenirs::on_editSouvenir_clicked()
     model->setQuery(*qry);
     ui->tableView->setModel(model);
 
-    ui->editName->clear();
+//    ui->editName->clear();
+
+
+    //FOR EDIT COMBO BOX
+    QString editTeam = ui->comboBox->currentText();
+    QSqlQueryModel* editModel = new QSqlQueryModel();
+
+    QSqlQuery * editQry = new QSqlQuery(myDB);
+
+    editQry->prepare("select item from '"+editTeam+"'");
+    editQry->exec();
+
+    editModel->setQuery(*editQry);
+    ui->editComboBox->setModel(editModel);
+    //FOR DELETE COMBO BOX
+    QString deleteTeam = ui->comboBox->currentText();
+    QSqlQueryModel* deleteModel = new QSqlQueryModel();
+
+    QSqlQuery * deleteQry = new QSqlQuery(myDB);
+
+    deleteQry->prepare("select item from '"+deleteTeam+"'");
+    deleteQry->exec();
+
+    deleteModel->setQuery(*deleteQry);
+    ui->deleteComboBox->setModel(deleteModel);
 }
 
 void aSouvenirs::on_deleteSouvenir_clicked()
 {
 
     QString team = ui->comboBox->currentText();
-    QString name = ui->deleteName->toPlainText();
+    QString name = ui->deleteComboBox->currentText();
     //name cant be empty or existing
     //team has to be valid
     //money cant be negative
@@ -163,13 +209,6 @@ void aSouvenirs::on_deleteSouvenir_clicked()
         qWarning() << "INVALID INPUT";
         return;
     }
-
-    if(name == "")
-    {
-        qWarning() << "EMPTY NAME";
-        return;
-    }
-
 
 
     qry->prepare("delete from '"+team+"' where item = '"+name+"'");
@@ -189,7 +228,31 @@ void aSouvenirs::on_deleteSouvenir_clicked()
     model->setQuery(*qry);
     ui->tableView->setModel(model);
 
-    ui->deleteName->clear();
+//    ui->deleteName->clear();
+
+
+    //FOR EDIT COMBO BOX
+    QString editTeam = ui->comboBox->currentText();
+    QSqlQueryModel* editModel = new QSqlQueryModel();
+
+    QSqlQuery * editQry = new QSqlQuery(myDB);
+
+    editQry->prepare("select item from '"+editTeam+"'");
+    editQry->exec();
+
+    editModel->setQuery(*editQry);
+    ui->editComboBox->setModel(editModel);
+    //FOR DELETE COMBO BOX
+    QString deleteTeam = ui->comboBox->currentText();
+    QSqlQueryModel* deleteModel = new QSqlQueryModel();
+
+    QSqlQuery * deleteQry = new QSqlQuery(myDB);
+
+    deleteQry->prepare("select item from '"+deleteTeam+"'");
+    deleteQry->exec();
+
+    deleteModel->setQuery(*deleteQry);
+    ui->deleteComboBox->setModel(deleteModel);
 }
 
 void aSouvenirs::on_comboBox_activated(const QString &arg1)
@@ -208,18 +271,18 @@ void aSouvenirs::on_comboBox_activated(const QString &arg1)
 
     qDebug() << ui->comboBox->currentText();
 
-    if(ui->comboBox->currentText() == "Choose Arena For Souvenirs" || ui->comboBox->currentText() == "")
+    if(ui->comboBox->currentText() == "Choose Arena For Souvenirs")
     {
         ui->addName->setEnabled(false);
         ui->addMoney->setEnabled(false);
         ui->addSouvenir->setEnabled(false);
 
-        ui->editName->setEnabled(false);
-        ui->editMoney->setEnabled(false);
+         ui->editMoney->setEnabled(false);
         ui->editSouvenir->setEnabled(false);
+        ui->editComboBox->setEnabled(false);
 
-        ui->deleteName->setEnabled(false);
         ui->deleteSouvenir->setEnabled(false);
+        ui->deleteComboBox->setEnabled(false);
 
     }
     else if(!ui->addName->isEnabled())
@@ -228,13 +291,37 @@ void aSouvenirs::on_comboBox_activated(const QString &arg1)
         ui->addMoney->setEnabled(true);
         ui->addSouvenir->setEnabled(true);
 
-        ui->editName->setEnabled(true);
         ui->editMoney->setEnabled(true);
         ui->editSouvenir->setEnabled(true);
+        ui->editComboBox->setEnabled(true);
 
-        ui->deleteName->setEnabled(true);
         ui->deleteSouvenir->setEnabled(true);
+        ui->deleteComboBox->setEnabled(true);
     }
 
+    //FOR EDIT COMBO BOX
+    QString editTeam = ui->comboBox->currentText();
+    QSqlQueryModel* editModel = new QSqlQueryModel();
+
+    QSqlQuery * editQry = new QSqlQuery(myDB);
+
+    editQry->prepare("select item from '"+editTeam+"'");
+    editQry->exec();
+
+    editModel->setQuery(*editQry);
+    ui->editComboBox->setModel(editModel);
+
+
+    //FOR DELETE COMBO BOX
+    QString deleteTeam = ui->comboBox->currentText();
+    QSqlQueryModel* deleteModel = new QSqlQueryModel();
+
+    QSqlQuery * deleteQry = new QSqlQuery(myDB);
+
+    deleteQry->prepare("select item from '"+deleteTeam+"'");
+    deleteQry->exec();
+
+    deleteModel->setQuery(*deleteQry);
+    ui->deleteComboBox->setModel(deleteModel);
 
 }

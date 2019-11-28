@@ -123,28 +123,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QTextEdit" name="editName">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>210</y>
-     <width>181</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="accessibleName">
-    <string/>
-   </property>
-   <property name="accessibleDescription">
-    <string/>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="placeholderText">
-    <string>Insert The Name Of The Souvenir</string>
-   </property>
-  </widget>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
@@ -169,28 +147,6 @@
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="deleteName">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>340</y>
-     <width>181</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="accessibleName">
-    <string/>
-   </property>
-   <property name="accessibleDescription">
-    <string/>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="placeholderText">
-    <string>Insert The Name Of The Souvenir</string>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox">
@@ -360,6 +316,36 @@
    <item>
     <property name="text">
      <string>Washington Wizards Store</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="editComboBox">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>210</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Select Item</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="deleteComboBox">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>340</y>
+     <width>221</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Select Item</string>
     </property>
    </item>
   </widget>
