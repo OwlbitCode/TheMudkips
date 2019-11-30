@@ -8,6 +8,22 @@ aTeam::aTeam(QWidget *parent) :
 {
     ui->setupUi(this);
     myDb=QSqlDatabase::database();
+
+    QSqlQuery* query = new QSqlQuery(myDb);
+    QSqlQueryModel* model = new QSqlQueryModel;
+    query->prepare("select `Team Name` from 'Team Info'");
+    if(query->exec()){std::cout<<"query executed";}
+    else{std::cout<<"query failed";}
+    model->setQuery(*query);
+    ui->comboBox->setModel(model);
+
+    QSqlQuery* qry = new QSqlQuery(myDb);
+    QSqlQueryModel* mdl = new QSqlQueryModel;
+    qry->prepare("select * from 'Team Info'");
+    if(qry->exec()){std::cout<<"Tabel loaded";}
+    else{std::cout<<"Table failed to load";}
+    mdl->setQuery(*qry);
+    ui->tableView->setModel(mdl);
 }
 
 aTeam::~aTeam()
@@ -28,24 +44,6 @@ void aTeam::on_tableView_activated(const QModelIndex &index)
 
 }
 
-void aTeam::on_pushButton_5_clicked() //refresh the table
-{
-    QSqlQuery* query = new QSqlQuery(myDb);
-    QSqlQueryModel* model = new QSqlQueryModel;
-    query->prepare("select `Team Name` from 'Team Info'");
-    if(query->exec()){std::cout<<"query executed";}
-    else{std::cout<<"query failed";}
-    model->setQuery(*query);
-    ui->comboBox->setModel(model);
-
-    QSqlQuery* qry = new QSqlQuery(myDb);
-    QSqlQueryModel* mdl = new QSqlQueryModel;
-    qry->prepare("select * from 'Team Info'");
-    if(qry->exec()){std::cout<<"Tabel loaded";}
-    else{std::cout<<"Table failed to load";}
-    mdl->setQuery(*qry);
-    ui->tableView->setModel(mdl);
-}
 
 void aTeam::on_comboBox_currentIndexChanged(const QString &arg1) //loads team data into line_edits
 {
@@ -97,6 +95,15 @@ void aTeam::on_pushButton_clicked() //update the table
         else{std::cout<<"Table failed to load";}
         mdl->setQuery(*qry);
         ui->tableView->setModel(mdl);
+
+        ui->lineEdit->clear();
+        ui->lineEdit_2->clear();
+        ui->lineEdit_3->clear();
+        ui->lineEdit_4->clear();
+        ui->lineEdit_5->clear();
+        ui->lineEdit_6->clear();
+        ui->lineEdit_7->clear();
+        ui->lineEdit_8->clear();
             }
     else{std::cout<<"failed to update";}
 }
@@ -104,6 +111,7 @@ void aTeam::on_pushButton_clicked() //update the table
 void aTeam::on_pushButton_3_clicked() //Delete a team
 {
     QString name = ui->comboBox->currentText();
+    QString variable = name + " Store";
     QSqlQuery* query = new QSqlQuery(myDb);
     query->prepare("delete from 'Team Info' where `Team Name` = '"+name+"'");
     if(query->exec())
@@ -117,13 +125,18 @@ void aTeam::on_pushButton_3_clicked() //Delete a team
         else{std::cout<<"Table failed to load";}
         mdl->setQuery(*qry);
         ui->tableView->setModel(mdl);
+
+        qry->clear();
+        std::string test = variable.toStdString();
+        std::cout << std::endl << test;
+        qry->prepare("delete ''"+variable+"''");
     }
     else {std::cout<<"failed to delete";}
 }
 
 
 
-void aTeam::on_pushButton_2_clicked()
+void aTeam::on_pushButton_2_clicked() //add a team
 {
- window.show();
+
 }

@@ -7,15 +7,7 @@ aArena::aArena(QWidget *parent) :
 {
     ui->setupUi(this);
     myDb=QSqlDatabase::database();
-}
 
-aArena::~aArena()
-{
-    delete ui;
-}
-
-void aArena::on_pushButton_clicked() //refresh table
-{
     QSqlQuery* qry = new QSqlQuery(myDb);
     QSqlQueryModel* mdl = new QSqlQueryModel;
     qry->prepare("select `Arena Name`,`Team Name`,`Stadium Capacity` from 'Team Info'");
@@ -33,7 +25,7 @@ void aArena::on_pushButton_clicked() //refresh table
     qry->exec();
     mdl->setQuery(*qry);
     ui->ArenaBox_1->setModel(mdl);
-    ui->ArenaBox_2->setModel(mdl);
+
 
     qry = new QSqlQuery(myDb);
     mdl = new QSqlQueryModel;
@@ -44,6 +36,11 @@ void aArena::on_pushButton_clicked() //refresh table
 
 }
 
+aArena::~aArena()
+{
+    delete ui;
+}
+
 void aArena::on_pushButton_3_clicked() //update capacity
 {
     QString name = ui->ArenaBox_1->currentText();
@@ -51,13 +48,66 @@ void aArena::on_pushButton_3_clicked() //update capacity
     QSqlQuery* query = new QSqlQuery(myDb);
     query->prepare("update 'Team Info' set `Stadium Capacity` = '"+capacity+"' where `Arena Name` = '"+name+"'");
     query->exec();
+    //refresh
+    QSqlQuery* qry = new QSqlQuery(myDb);
+    QSqlQueryModel* mdl = new QSqlQueryModel;
+    qry->prepare("select `Arena Name`,`Team Name`,`Stadium Capacity` from 'Team Info'");
+    if(qry->exec())
+    {
+        std::cout<<"Arenas loaded";
+        mdl->setQuery(*qry);
+        ui->tableView->setModel(mdl);}
+    else{std::cout<<"Arenas failed to load";}
+
+
+    qry = new QSqlQuery(myDb);
+    mdl = new QSqlQueryModel;
+    qry->prepare("select `Arena Name` from 'Team Info'");
+    qry->exec();
+    mdl->setQuery(*qry);
+    ui->ArenaBox_1->setModel(mdl);
+
+
+    qry = new QSqlQuery(myDb);
+    mdl = new QSqlQueryModel;
+    qry->prepare("select `Team Name` from 'Team Info'");
+    qry->exec();
+    mdl->setQuery(*qry);
+    ui->TeamBox->setModel(mdl);
 }
 
-void aArena::on_pushButton_2_clicked()
+void aArena::on_pushButton_2_clicked() //add a new arena
 {
-    QString arena = ui->ArenaBox_2->currentText();
+    QString arena = ui->ArenaName->text();
+    QString capacity = ui->ArenaCap->text();
     QString team = ui->TeamBox->currentText();
     QSqlQuery* query = new QSqlQuery(myDb);
-    query->prepare("update 'Team Info' set 'Arena Name' = '"+arena+"' where `Team Name` = '"+team+"'");
+    query->prepare("update 'Team Info' set 'Arena Name' = '"+arena+"', 'Stadium Capacity' = '"+capacity+"' where `Team Name` = '"+team+"'");
     query->exec();
+    //refresh
+    QSqlQuery* qry = new QSqlQuery(myDb);
+    QSqlQueryModel* mdl = new QSqlQueryModel;
+    qry->prepare("select `Arena Name`,`Team Name`,`Stadium Capacity` from 'Team Info'");
+    if(qry->exec())
+    {
+        std::cout<<"Arenas loaded";
+        mdl->setQuery(*qry);
+        ui->tableView->setModel(mdl);}
+    else{std::cout<<"Arenas failed to load";}
+
+
+    qry = new QSqlQuery(myDb);
+    mdl = new QSqlQueryModel;
+    qry->prepare("select `Arena Name` from 'Team Info'");
+    qry->exec();
+    mdl->setQuery(*qry);
+    ui->ArenaBox_1->setModel(mdl);
+
+
+    qry = new QSqlQuery(myDb);
+    mdl = new QSqlQueryModel;
+    qry->prepare("select `Team Name` from 'Team Info'");
+    qry->exec();
+    mdl->setQuery(*qry);
+    ui->TeamBox->setModel(mdl);
 }

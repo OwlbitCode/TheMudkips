@@ -23,8 +23,6 @@ private slots:
 
     void on_tableView_activated(const QModelIndex &index);
 
-    void on_pushButton_5_clicked();
-
     void on_comboBox_currentIndexChanged(const QString &arg1);
 
     void on_pushButton_clicked();

@@ -293,7 +293,7 @@ void vPackageC::createMatrix()
  * POST-CONDITIONS
  *      ==> Nothing.
  ***************************************************************************/
-void vPackageC::doDijkstras()
+/*void vPackageC::doDijkstras()
 {
     float lowDist[teamTotal]; // The output array. dist[i] will hold the shortest
                             // distance from src to i
@@ -340,7 +340,7 @@ void vPackageC::doDijkstras()
 
     // print the constructed distance array
     displaySolution(lowDist, parentArr);
-}
+}*/
 
 /****************************************************************************
  * minDistance

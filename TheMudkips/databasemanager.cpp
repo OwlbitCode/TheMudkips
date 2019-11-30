@@ -25,7 +25,7 @@ bool databaseManager::openDB()
         // Create database object
         database = QSqlDatabase::addDatabase("QSQLITE");
         // Create database connection
-        database.setDatabaseName("nba.db");
+        database.setDatabaseName("C:\\Users\\mrpou\\Documents\\GitHub\\TheMudkips\\TheMudkips\\NBA.db");
 
         // Check if database was successfully opened
         if(!database.open())
