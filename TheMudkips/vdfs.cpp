@@ -17,7 +17,7 @@ vDFS::vDFS(QWidget *parent) :
 
 
     getNumTeams(); //get number of teams
-    qDebug()<< "numTeams: " << numTeams;
+//    qDebug()<< "numTeams: " << numTeams;
 
     //create dynamic array of visited arrays
     vis = new int [numTeams];
@@ -120,7 +120,7 @@ void vDFS::getTeamList()
         {
             uTeam = qry->value(0).toString();
             teamList[index] = uTeam.toStdString();
-           std::cout<< teamList[index] << " " << index << " ";
+//           std::cout<< teamList[index] << " " << index << " ";
             index++;
         }
     }
@@ -208,7 +208,7 @@ void vDFS::DFS(int start)
 
     //std::vector<std::pair<int,float>> temp[];
 
-    qDebug()<<"Start" << start;
+//    qDebug()<<"Start" << start;
 
 int v;
 float wt;
@@ -218,13 +218,13 @@ QString tempStr;  // used for temporary holding a string value
 
 if(vis[start] == 0)
    {
-       std::cout << "\tVisiting " << teamList[start] << std::endl << std::endl;
+//       std::cout << "\tVisiting " << teamList[start] << std::endl << std::endl;
 
       vis[start] = 1;
 
       tempStr = QString::fromStdString(teamList[start]);
       ui->dfsList->addItem(tempStr);
-      std::cout<<"BEFORE THE ITERATION";
+//      std::cout<<"BEFORE THE ITERATION";
 
             for(auto it = adj[start].begin(); it!=adj[start].end(); it++) //iterate through adj list
             {
@@ -239,7 +239,7 @@ if(vis[start] == 0)
                 {
                     //std::cout << " - (DISCOVERY EDGE)\n";
                     tDistance = tDistance + wt;
-                    qDebug()<<"tDistance" << tDistance;
+//                    qDebug()<<"tDistance" << tDistance;
 
                     DFS(v);
                 }
@@ -247,7 +247,7 @@ if(vis[start] == 0)
                    // std::cout << " - (BACK EDGE)\n\n";
             }
         }
-        std::cout << "\tBack track.\n\n";
+//        std::cout << "\tBack track.\n\n";
 
 
 }

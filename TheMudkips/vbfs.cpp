@@ -48,8 +48,15 @@ vBFS::vBFS(QWidget *parent) :
     {
         // creates the columns in the 2d dynamic array
         adj[i] = new float[numTeams];
-        // initialize each cell to -1
-        memset(adj[i], -1, numTeams*sizeof(float));
+    }
+
+    // initialize adjacenency matrix to 9999.9
+    for(int i = 0; i < numTeams; i++)
+    {
+        for(int j = 0; j < numTeams; j++)
+        {
+            adj[i][j] = -1;
+        }
     }
 
     // populate adjacency matrix (add edges)

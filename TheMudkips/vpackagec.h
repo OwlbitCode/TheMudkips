@@ -9,6 +9,10 @@
 #include <QDebug>
 #include <QListWidget>
 #include <cfloat>
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <algorithm>
 #include "vsimulation.h"
 
 namespace Ui {
@@ -44,11 +48,8 @@ public:
     void doDijkstras();
     //!< Does dikstra's algorithm to the adjacency matrix
 
-    int minDistance(float lowDist[], bool cloudT[]);
+    int minDistance(double lowDist[], bool cloudT[]);
     //!< Used by doDijkstras() to determine minimum distance node
-
-    void displaySolution(float lowDist[], int parentArr[]);
-    //!< Used for testing results on qDebug()
 
     void sortTeamOptimize();
     //!< Creates the sorted dynamic team and destination arrays
@@ -78,6 +79,9 @@ private:
                             /*!< class object for simulation window */
     QList<QListWidgetItem *> customList;
                             /*!< list of teams selected from list */
+    int *parentArr;
+    /*!< parentage array with child index, parent value */
+
     int teamNum;            /*!< number of teams selected */
     QString teamName;       /*!< team name */
     QString startTeam;      /*!< starting team name */
@@ -87,16 +91,16 @@ private:
     // The two passed dynamic arrays to vSimulation
     QString* sortedTeams = nullptr;
                             /*!< list of sorted teams */
-    float* sortedDistance = nullptr;
+    double* sortedDistance = nullptr;
                             /*!< list of sorted destinations */
 
     // Used for creating adjacency matrix
     QString uTeam;          /*!< origin team name         : u */
     QString vTeam;          /*!< destination team name    : v  */
-    float   distance;       /*!< distance between u and v : wt */
+    double  distance;       /*!< distance between u and v : wt */
     int teamTotal;          /*!< total number of teams    : V */
     std::string *teamList;  /*!< array (master) list of team names */
-    float       **adj;      /*!< adjacency matrix for weighted edges */
+    double      **adj;      /*!< adjacency matrix for weighted edges */
 };
 
 #endif // VPACKAGEC_H

@@ -34,19 +34,38 @@ vPackageC::vPackageC(QWidget *parent) :
     getTeamList();
 
     // create dynamic adjacency matrix (pointers array)
-    adj = new float* [teamTotal];
+    adj = new double* [teamTotal];
 
     // create columns for adjacency matrix
     for(int i = 0; i < teamTotal; i++)
     {
         // creates the columns in the 2d dynamic array
-        adj[i] = new float[teamTotal];
-        // initialize each cell to -1
-        memset(adj[i], -1, teamTotal*sizeof(float));
+        adj[i] = new double[teamTotal];
+    }
+
+    // initialize adjacenency matrix to 9999.9
+    for(int i = 0; i < teamTotal; i++)
+    {
+        for(int j = 0; j < teamTotal; j++)
+        {
+            adj[i][j] = 9999.9;
+        }
     }
 
     // populate adjacency matrix (add edges)
     createMatrix();
+
+    // Test the matrix
+    /*
+    // initialize adjacenency matrix to 9999.9
+    for(int i = 0; i < teamTotal; i++)
+    {
+        for(int j = 0; j < teamTotal; j++)
+        {
+            qDebug() << i << " " << j << " " << adj[i][j];
+        }
+    }
+    */
 
     // Set right side to disabled
     ui->sortedGroup->setEnabled(false);
@@ -83,8 +102,6 @@ void vPackageC::defaultListView()
 {
     // Create new database query
     QSqlQuery * qry = new QSqlQuery(myDB);
-
-//    qDebug() << startTeam;
 
     // Set up the query to create ordered list of teams, except startTeam
     qry->prepare("SELECT DISTINCT `Beg Team` "
@@ -203,7 +220,6 @@ void vPackageC::getTeamList()
     {
         qDebug() << ("Package C getTeamList Error: qry failed.");
     }
-    qDebug() << "getTeamList Done";
 }
 
 /****************************************************************************
@@ -265,7 +281,7 @@ void vPackageC::createMatrix()
                     dIndex++;
             }
 
-            distance = qry->value(3).toFloat();
+            distance = qry->value(3).toDouble();
 
             // Add weighted edge into adjacency matrix
             adj[sIndex][dIndex] = distance;
@@ -275,8 +291,6 @@ void vPackageC::createMatrix()
     {
         qDebug() << ("Package C createMatrix: qry failed.");
     }
-
-    qDebug() << "createMatrix done";
 }
 
 /****************************************************************************
@@ -293,44 +307,47 @@ void vPackageC::createMatrix()
  * POST-CONDITIONS
  *      ==> Nothing.
  ***************************************************************************/
-/*void vPackageC::doDijkstras()
+void vPackageC::doDijkstras()
 {
-    float lowDist[teamTotal]; // The output array. dist[i] will hold the shortest
-                            // distance from src to i
+    double *lowDist; // The output array. dist[i] will hold the
+                              // shortest distance from src to i
 
-    bool cloudT[teamTotal]; // cloudT[i] will be true if vertex i is included in shortest
+    bool *cloudT; // cloudT[i] will be true if vertex i is included in shortest
                             // path tree or shortest distance from src to i is finalized
 
-    int parentArr[teamTotal]; // Parent array used to store the parent(index u) for child (index v)
-    parentArr[0] = 0; // set starting index to 0
+    // create dynamic variable arrays
+    lowDist = new double [teamTotal];
+    cloudT = new bool [teamTotal];
+    parentArr = new int [teamTotal];
 
     // Initialize all distances as INFINITE and cloudT[] as false
-    for (int i = 0; i < teamTotal; i++)
+    for(int i = 0; i < teamTotal; i++)
     {
-        lowDist[i] = 9999.9f;
+        lowDist[i] = 9999.9;
         cloudT[i] = false;
     }
 
-    // Distance of source vertex from itself is always 0
-    lowDist[sTeamIndex] = 0;
+    // Initializing variables for starting team index
+    lowDist[sTeamIndex] = 0; // set lowest distance starting index to 0
+    parentArr[0] = 0; // set starting index to 0
 
     // Find shortest path for all vertices
-    for (int count = 0; count < teamTotal - 1; count++) {
+    for(int count = 0; count < teamTotal; count++)
+    {
         // Pick the minimum distance vertex from the set of vertices not
-        // yet processed. u is always equal to src in the first iteration.
+        // yet processed. u is always equal to cloudT in the first iteration.
         int u = minDistance(lowDist, cloudT);
 
         // Mark the picked vertex as processed
         cloudT[u] = true;
 
         // Update dist value of the adjacent vertices of the picked vertex.
-        for (int v = 0; v < teamTotal; v++)
+        for(int v = 0; v < teamTotal; v++)
         {
-            // Update dist[v] only if is not in cloudT, there is an edge from
+            // Update lowDist[v] only if is not in cloudT, there is an edge from
             // u to v, and total weight of path from src to v through u is
             // smaller than current value of dist[v]
-            if (!cloudT[v] && adj[u][v] && (lowDist[u] >= 9999.9f)
-                && (lowDist[u] + adj[u][v] < lowDist[v]))
+            if(!cloudT[v] && (adj[u][v] < 9000) && (lowDist[u] + adj[u][v] < lowDist[v]))
             {
                 lowDist[v] = lowDist[u] + adj[u][v];
                 parentArr[v] = u;//storing the parent u for child v
@@ -338,9 +355,9 @@ void vPackageC::createMatrix()
         }
     }
 
-    // print the constructed distance array
-    displaySolution(lowDist, parentArr);
-}*/
+    delete [] lowDist;
+    delete [] cloudT;
+}
 
 /****************************************************************************
  * minDistance
@@ -354,49 +371,20 @@ void vPackageC::createMatrix()
  * POST-CONDITIONS
  *      ==> Nothing.
  ***************************************************************************/
-int vPackageC::minDistance(float lowDist[], bool cloudT[])
+int vPackageC::minDistance(double lowDist[], bool cloudT[])
 {
     // Initialize min value
-    float min = FLT_MAX;
+    double min = 9000; // ensures it is below 9999.9 easier on julis eyes to be 9000/ peace of mind
     int minIndex = 0;
 
-    for (int v = 0; v < teamTotal; v++)
-        if (cloudT[v] == false && lowDist[v] <= min)
+    for(int v = 0; v < teamTotal; v++)
+        if(cloudT[v] == false && lowDist[v] < min)
         {
             min = lowDist[v];
             minIndex = v;
         }
 
     return minIndex;
-}
-
-void vPackageC::displaySolution(float lowDist[], int parentArr[])
-{
-    {
-        int p;
-        int c;
-
-        for (int i = 0; i < teamTotal; i++)
-        {
-            p = parentArr[i];
-            c=i;
-
-            qDebug() << QString::fromStdString(teamList[i]);
-
-            while(p!=0 && c!=0)
-            {
-                qDebug() << " <- " << QString::fromStdString(teamList[p]);
-                c = p;
-                p = parentArr[p];
-            }
-
-            if (i!=0)
-            {
-                qDebug() << " <- " << QString::fromStdString(teamList[p]);
-            }
-            qDebug() << " | " << lowDist[i] << endl;
-        }
-    }
 }
 
 /****************************************************************************
@@ -412,27 +400,59 @@ void vPackageC::displaySolution(float lowDist[], int parentArr[])
 // Display dynamic sorted array that will be passed in list
 void vPackageC::sortTeamNormal()
 {
-//    qDebug() << "size: " << teamNum;
-//    QString temp; // used as temporary storage while swapping
-    sortedTeams = new QString[teamNum]; // new object for dynamic
-                                        // team array
-    sortedDistance = new float[teamNum];  // new object for dynamic
-                                        // distance array
+    // Variables used for the below FOR loop
+    bool   isFound;       // check if index of next in sorted Teams is found
+    bool   isEnd;         // check if v -> u is done
+    double tempDistance;  // store total distance between u and v
+    int    nextIndex;     // Used to iterate through index from v to u
+    int    vIndex;        // Used to keep the v Index
 
-    /************************************************************************
-     * PROCESS: Copy contents of customList (fan's selected teams)
-     *          into dynamic array.
-     ***********************************************************************/
-    // Put startTeam at index 0
-    sortedTeams[0] = startTeam;
-    sortedDistance[0] = 0;
-
-    // Copy teams from customList to dynamic array (sortedTeams)
+    // Find transitive distance between each index in the sortedTeams
+    // Store result in sortedDistances
     for(int i = 1; i < teamNum; i++)
     {
-        // customList needs i-1 because it starts at 0, but the iteration
-        // starts at 1 because [0] is where startTeam was placed.
-        sortedTeams[i] = customList.at(i-1)->text();
+        // Initialize variables for each index change in sortedTeam
+        isFound      = false;
+        isEnd        = false;
+        tempDistance = 0.0;
+        nextIndex    = 0;
+
+        // GENERATE DIJKSTRA'S using sTeamIndex and adjacency matrix
+        doDijkstras();
+
+        // Get masterlist index value for nextIndex in sortedTeams array
+        while(!isFound)
+        {
+            if(teamList[nextIndex] == sortedTeams[i].toStdString())
+                isFound = true;
+            else
+                nextIndex++;
+        }
+
+        vIndex = nextIndex;  // save the original v index
+
+//        qDebug() << "Find transitive distance from " << QString::fromStdString(teamList[sTeamIndex]) << " to " << QString::fromStdString(teamList[nextIndex]);
+
+        // Get total distance from nextIndex -> sTeamIndex
+        // Use parentArr to go up the parentage to sTeamIndex
+        while(!isEnd)
+        {
+//            qDebug() << "from " << QString::fromStdString(teamList[nextIndex]) << "to parent " << QString::fromStdString(teamList[parentArr[nextIndex]]) << "distance is " << adj[parentArr[nextIndex]][nextIndex];
+            tempDistance = tempDistance + adj[parentArr[nextIndex]][nextIndex];
+
+            // Check if nextIndex parent is same as the sTeamIndex
+            // If same, stop looping
+            // Else, set nextIndex as the new sTeamIndex
+            if(sTeamIndex == parentArr[nextIndex])
+                isEnd = true;
+            else
+                nextIndex = parentArr[nextIndex];
+        }
+
+        // Store transitive distance between u and v.
+        sortedDistance[i] = tempDistance;
+
+        sTeamIndex = vIndex; // set u = previous v
     }
 }
 
@@ -443,34 +463,131 @@ void vPackageC::sortTeamNormal()
  * and distance traveled using customList plus startTeam.  This is the
  * OPTIMIZED PACKAGE.  Shortest distance, not fan choice.
  * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      adj[][] : adjacency matrix was already created and has data
+ *      sTeamIndex: index of starting node.
+ *      teamNum: total number of teams in sortedTeams array.
+ *      sortedTeams[]: list of teams with index 0 being the start team
+ *      sortedDistance[]: will have the transitive wt of each team in sortedTeams[]
+ *
  * POST-CONDITIONS
  *      ==> Creates sorted dynamic arrays for teams and destinations.
  ***************************************************************************/
 // Display dynamic sorted array that will be passed in list
 void vPackageC::sortTeamOptimize()
 {
-//    qDebug() << "size: " << teamNum;
-//    QString temp; // used as temporary storage while swapping
-    sortedTeams = new QString[teamNum]; // new object for dynamic
-                                        // team array
-    sortedDistance = new float[teamNum];  // new object for dynamic
-                                        // distance array
+    // Variables used for the below FOR loop
+    bool   isFound;       // check if index of next in sorted Teams is found
+    bool   isEnd;         // check if v -> u is done
+    double tempDistance;  // store total distance between u and v
+    int    nextIndex;     // Used to iterate through index from v to u
+    QString tempStr;      // Used to store string for swap sort
+    int cToPIndex; // child to parent index for parentage
 
-    /************************************************************************
-     * PROCESS: Copy contents of customList (fan's selected teams)
-     *          into dynamic array.
-     ***********************************************************************/
-    // Put startTeam at index 0
-    sortedTeams[0] = startTeam;
-    sortedDistance[0] = 0;
+    // vector for storing unsorted children of sTeamIndex for sorting
+    std::vector<std::pair<int, double>> unsortedChildren;
 
-    // Copy teams from customList to dynamic array (sortedTeams)
-    for(int i = 1; i < teamNum; i++)
+    // Index 0 is the first starting team index to doDijkstra with
+    // For index 0 to size-1, sort the teams into proper positions and get transitive wt
+    // size-1 for condition because the last item in the array will be in its final position
+    for(int i = 0; i < teamNum-1; i++)
     {
-        // customList needs i-1 because it starts at 0, but the iteration
-        // starts at 1 because [0] is where startTeam was placed.
-        sortedTeams[i] = customList.at(i-1)->text();
-    }
+        sTeamIndex = 0;
+
+        // find start team index
+        isFound = false;
+        while(!isFound)
+        {
+            if(teamList[sTeamIndex] == sortedTeams[i].toStdString())
+                isFound = true;
+            else
+                sTeamIndex++;
+        }
+
+//        qDebug() << "Starting Team: " << QString::fromStdString(teamList[sTeamIndex]) << " : index = " << sTeamIndex;
+
+        // GENERATE DIJKSTRA'S using sTeamIndex and adjacency matrix
+        doDijkstras();
+
+        // Populate the unsortedChildren vector then sort by weight to find
+        // the shortest distance to sTeamIndex
+        for(int j = i+1; j < teamNum; j++)
+        {
+            tempDistance = 0.0;
+            nextIndex    = 0;
+            isEnd        = false;
+            isFound = false;
+
+            // find nextIndex of string in sortedTeams index j
+            while(!isFound)
+            {
+//                qDebug() << "while is found: " << sortedTeams[j] << " = " << QString::fromStdString(teamList[nextIndex]);
+                if(teamList[nextIndex] == sortedTeams[j].toStdString())
+                    isFound = true;
+                else
+                    nextIndex++;
+            }
+
+            // Get total distance from nextIndex -> sTeamIndex
+            // Use parentArr to go up the parentage to sTeamIndex
+            cToPIndex = nextIndex; // child to parent index for parentage
+            while(!isEnd)
+            {
+//                qDebug() << "from " << QString::fromStdString(teamList[cToPIndex]) << "to parent " << QString::fromStdString(teamList[parentArr[cToPIndex]]) << "distance is " << adj[parentArr[cToPIndex]][cToPIndex];
+                tempDistance = tempDistance + adj[parentArr[cToPIndex]][cToPIndex];
+
+                // Check if nextIndex parent is same as the sTeamIndex
+                // If same, stop looping
+                // Else, set nextIndex as the new sTeamIndex
+                if(sTeamIndex == parentArr[cToPIndex])
+                    isEnd = true;
+                else
+                    cToPIndex = parentArr[cToPIndex];
+            }
+
+            // Add child to vector
+            unsortedChildren.push_back(std::make_pair(nextIndex,tempDistance));
+        } // for j loop
+
+        // sort the children index of sTeamIndex (parent) by the smallest weighted child
+        sort(unsortedChildren.begin(), unsortedChildren.end(),
+             [](std::pair<int, double> const &a,
+                std::pair<int, double> &b)
+                {
+                    return (a.second < b.second);
+                });
+
+        // nextIndex is the closest team to sTeamIndex
+        nextIndex = unsortedChildren[0].first;
+
+        //Do the swap (move nextIndex to sortedTeams[i+1]
+        isFound = false;
+        int k = i+1; // used to find index location of nextIndex in sortedTeams
+        while(!isFound)
+        {
+            if(QString::fromStdString(teamList[nextIndex]) == sortedTeams[k])
+            {
+                // Swap time
+                tempStr = sortedTeams[k];
+                sortedTeams[k] = sortedTeams[i+1];
+                sortedTeams[i+1] = tempStr;
+
+                isFound = true;
+            }
+            else if (k >= teamNum)
+            {
+                qDebug() << "wow, we didn't find it?";
+            }
+            else
+                k++;
+        }
+
+        // Store unsortedChildren[0].second into sortedDistance[i+1]
+        sortedDistance[i+1] = unsortedChildren[0].second;
+
+        // Clears the unsortedChild vector
+        unsortedChildren.clear();
+    } // for i loop
 }
 
 /****************************************************************************
@@ -514,7 +631,6 @@ void vPackageC::on_startButton_clicked()
 void vPackageC::on_startTeam_currentIndexChanged(const QString &arg1)
 {
     startTeam = arg1;
-//    qDebug() << startTeam;
     ui->teamList->clear();
     defaultListView();
 }
@@ -531,6 +647,12 @@ void vPackageC::on_startTeam_currentIndexChanged(const QString &arg1)
  ***************************************************************************/
 void vPackageC::on_confirmButton_clicked()
 {
+    /************************************************************************
+     * PROCESS: Store selected teams in order into customList.
+     *          Find total number of teams in customList. (teamNum)
+     *          Stores startTeam from selected option in combobox.
+     *          Find master list index for the startTeam. (sTeamIndex)
+     ***********************************************************************/
     // Stores selected items from teamList into customList
     ui->sortedTeamList->clear();
     customList = ui->teamList->selectedItems();
@@ -550,7 +672,34 @@ void vPackageC::on_confirmButton_clicked()
             sTeamIndex++;
     }
 
-    // Used to determine which algorithm to use
+    /************************************************************************
+     * PROCESS: Create dynamic arrays for team names (sortedTeams) and
+     *          distances (sortedDistance).
+     *          Copy customList (fan's selected teams) into sortedTeams,
+     *          with startTeam being index 0.
+     ***********************************************************************/
+    // dynamic arrays that need are sorted results of fan selection
+    // that will be passed to vSimulation
+    sortedTeams = new QString[teamNum]; // new object for dynamic
+                                        // team array
+    sortedDistance = new double[teamNum];  // new object for dynamic
+                                           // distance array
+
+    // Put startTeam at index 0
+    sortedTeams[0] = startTeam;
+    sortedDistance[0] = 0;
+
+    // Copy teams from customList to dynamic array (sortedTeams)
+    for(int i = 1; i < teamNum; i++)
+    {
+        // customList needs i-1 because it starts at 0, but the iteration
+        // starts at 1 because [0] is where startTeam was placed.
+        sortedTeams[i] = customList.at(i-1)->text();
+    }
+
+    /************************************************************************
+     * PROCESS: Do the sort type depending on optimization option selected.
+     ***********************************************************************/
     // If checkbox is checked (true)
     if(ui->optimizeBox->isChecked())
     {
@@ -564,14 +713,18 @@ void vPackageC::on_confirmButton_clicked()
         sortTeamNormal();
     }
 
-    // GENERATE DIJKSTRA'S using startTeam and adjacency matrix
-//    doDijkstras();
+    /************************************************************************
+     * OUTPUT: Display ordered result of the sortedTeams and total distance.
+     ***********************************************************************/
+    double totalDistance = 0.0;
 
     // Load all selected, sorted teams into list view
     for(int i = 0; i < teamNum; i++)
     {
         ui->sortedTeamList->addItem(sortedTeams[i]);
+        totalDistance = totalDistance + sortedDistance[i];
     }
 
+    ui->distanceLine->setText(QString::number(totalDistance, 'f', 2));
     ui->sortedGroup->setEnabled(true);
 }
