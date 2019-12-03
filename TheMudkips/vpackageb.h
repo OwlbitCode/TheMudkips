@@ -39,7 +39,6 @@ private:
     QString startTeam = "Detroit Pistons";
     QList<QListWidgetItem *> selectionList;
     int teamNum; //total number of teams to go through
-    int currTeamNum; //total number of paths from current start team
     QString* sortedTeams = nullptr;
                             /*!< pointer to point to list of sorted teams */
     double* sortedDistance = nullptr;

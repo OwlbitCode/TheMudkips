@@ -122,7 +122,7 @@ void vSimulation::updateSouvenirs()
           item2->setText(QString::number(qry.value(1).toDouble(), 'f', 2));
           qDebug() << "item 2: " <<qry.value(1).toFloat();
 
-          // Populate one row of the foodTableWidget
+          // Populate one row of the souvenirTableWidget
           ui->souvenirTableWidget->setCellWidget(row,0, new QSpinBox(ui->souvenirTableWidget));
           ui->souvenirTableWidget->setItem(row, 1, item1);
           ui->souvenirTableWidget->setItem(row, 2, item2);
@@ -132,7 +132,7 @@ void vSimulation::updateSouvenirs()
         }
     }
 
-
+    ui->nextDestButton->setEnabled(false);//disable next destination button
 
 }
 
@@ -194,6 +194,7 @@ void vSimulation::on_nextDestButton_clicked()
         // Reset values
         ui->currDestCostLine->clear();
         ui->nextDestButton->setEnabled(false);
+
         if(index+1 >= total)
         {
             ui->nextDestButton->setText("End Vacation");

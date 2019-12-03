@@ -39,30 +39,9 @@ void vPackageB::defaultPackage()
     QSqlQuery * qry = new QSqlQuery(myDB);
 
     teamNum = 1;
-    currTeamNum=0;
+
     //int i = 1; //iterator
     // Set up the query to create ordered list of teams, except startTeam
-
-    //Get the Count:
-    qry->prepare("SELECT * "
-                 "FROM Distances "
-                 "WHERE `Beg Team` == '"+startTeam+"'"
-                 "ORDER BY `Beg Team` COLLATE NOCASE ASC ");
-
-    // Execute query if valid
-    if(qry->exec())
-    {
-        // Populating list from query
-        while(qry->next())
-        {
-            currTeamNum++;
-
-        }
-    }
-    else
-    {
-        qDebug() << ("vpackagec Error: qry failed.");
-    }
 
 
     //get total team count
@@ -88,8 +67,6 @@ void vPackageB::defaultPackage()
         qDebug() << ("vpackagec Error: qry failed.");
     }
 
-
-        qDebug() << "curr team Num" << currTeamNum;
         qDebug() << "team num" << teamNum;
 
 
@@ -104,8 +81,8 @@ void vPackageB::defaultPackage()
         sortedTeams[0] = startTeam;
         sortedDistance[0] = 0;
 
-        /*
-    //Get the Count:
+        int i = 1;
+
     qry->prepare("SELECT DISTINCT `Beg Team` "
                  "FROM Distances "
                  "WHERE `Beg Team` != '"+startTeam+"'"
@@ -115,80 +92,32 @@ void vPackageB::defaultPackage()
     if(qry->exec())
     {
         // Populating list from query
+
         while(qry->next())
         {
             sortedTeams[i] = qry->value(0).toString();
             sortedDistance[i] = qry->value(3).toDouble();
             i++; //iterate
         }
+
+        /*
+        //delete later test below
+        qry->next();
+        sortedTeams[i] = qry->value(0).toString();
+        sortedDistance[i] = qry->value(3).toDouble();
+        i++; //iterate
+        qry->next();
+        sortedTeams[i] = qry->value(0).toString();
+        sortedDistance[i] = qry->value(3).toDouble();
+        //delete above
+        */
+
     }
     else
     {
         qDebug() << ("vpackagec Error: qry failed.");
     }
-*/
 
-    //Testing
-
-        QSqlQuery qry2;
-        qry2.prepare("SELECT * "
-                    "FROM Distances "
-                    "WHERE `Beg Team`= '"+startTeam+"'"
-                    "ORDER BY Distance ASC");
-        qry2.exec();
-        qry2.next();
-
-       QString idValue = qry2.value(0).toString();
-       qDebug() << "IdVALUE" << idValue;
-       double distance =  qry2.value(3).toDouble();
-       qDebug() << "Distance" << distance;
-
-
-        /*
-         *
-
-
-    for(int i = 1; i<teamNum;i++)
-      {
-            QSqlQuery qry2;
-            qry2.prepare("SELECT * "
-                        "FROM Distances "
-                        "WHERE `Beg Team`= '"+startTeam+"'"
-                        "ORDER BY Distance ASC");
-            qry2.exec();
-            qry2.next();
-
-           QString idValue = qry2.value(0).toString();
-           qDebug() << "IdVALUE" << idValue;
-           double distance =  qry2.value(3).toInt();
-           qDebug() << "Distance" << distance;
-
-          for(int j=0; j<i; j++)
-          {
-              //qDebug() <<"here" << arr[j] << " " << idValue;
-              if (idValue==sortedTeams[j])
-              {
-                  //qDebug() <<"arr[j" << arr[j];
-                  qry2.next();
-                  idValue = qry2.value(0).toString();
-                  distance = qry2.value(3).toDouble();
-                  j=-1;
-              }
-
-          }
-
-
-
-            //qDebug() << "ID VALUE" << idValue;
-
-            sortedTeams[i] = idValue;
-            sortedDistance[i] = distance;
-
-            startTeam = idValue; //assign test city to the new city
-
-
-    }
-*/
 
 
     // Load all selected, sorted teams into sorted list view

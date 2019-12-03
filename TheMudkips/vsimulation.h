@@ -54,7 +54,7 @@ private:
     double* distances = nullptr;   /*!< Pointer for dynamic distance list*/
     QString currTeam;           /*!< Current team being visited */
     //int currDistance;           /*!< Distance from last to current team */
-    int totalDistance;          /*!< Total distance traveled thus far */
+    double totalDistance;          /*!< Total distance traveled thus far */
     double currCost;             /*!< Cost of souvenirs at current team */
     double totalCost;            /*!< Souvenir cost in simulation thus far */
     int total;                  /*!< Number of destinations for simulation */
