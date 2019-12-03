@@ -81,9 +81,24 @@ void aArena::on_pushButton_2_clicked() //add a new arena
     QString arena = ui->ArenaName->text();
     QString capacity = ui->ArenaCap->text();
     QString team = ui->TeamBox->currentText();
+
+    //get the original stadium name
+    QString oldName;
+    QSqlQuery* qury = new QSqlQuery(myDb);
+    qury->prepare("select `Arena Name` from 'Team Info' where `Team Name` ='"+team+"'");
+    qury->exec();
+    oldName = qury->value(0).toString();
+
+    //update team info
     QSqlQuery* query = new QSqlQuery(myDb);
-    query->prepare("update 'Team Info' set 'Arena Name' = '"+arena+"', 'Stadium Capacity' = '"+capacity+"' where `Team Name` = '"+team+"'");
+    query->prepare("update 'Team Info' set `Arena Name` = '"+arena+"', `Stadium Capacity` = '"+capacity+"' where `Team Name` = '"+team+"'");
     query->exec();
+
+    //update distances
+    QSqlQuery* qery = new QSqlQuery(myDb);
+    qery->prepare("update 'Distances' set `Beg Arena` = '"+arena+"' where `Beg Team` = '"+team+"'");
+    qery->exec();
+
     //refresh
     QSqlQuery* qry = new QSqlQuery(myDb);
     QSqlQueryModel* mdl = new QSqlQueryModel;
