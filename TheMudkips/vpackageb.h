@@ -20,6 +20,8 @@ class vPackageB : public QWidget
 
 public:
     explicit vPackageB(QWidget *parent = nullptr);
+
+
     ~vPackageB();
     void defaultPackage();
 
@@ -36,10 +38,11 @@ private:
     QString tName;
     QString startTeam = "Detroit Pistons";
     QList<QListWidgetItem *> selectionList;
-    int teamNum;
+    int teamNum; //total number of teams to go through
+    int currTeamNum; //total number of paths from current start team
     QString* sortedTeams = nullptr;
                             /*!< pointer to point to list of sorted teams */
-    int* sortedDistance = nullptr;
+    double* sortedDistance = nullptr;
                             /*!< pointer to point to list of sorted destinations */
 };
 

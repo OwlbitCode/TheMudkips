@@ -6,6 +6,9 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QSqlError>
+#include <QListWidget>
+#include <QSpinBox>
+#include <QTableWidget>
 #include <QDebug>
 
 namespace Ui {
@@ -18,16 +21,45 @@ class vSimulation : public QWidget
 
 public:
     explicit vSimulation(QWidget *parent = nullptr);
+    explicit vSimulation(QString * tList, double* dList, int t, QWidget * parent =nullptr);
+    //!< non default constructor passing team list, distance list and # of teams;
+
+    void defaultTeamList(); //populate team list
+    //!< populate team list
+
+    void updateSouvenirs(); // poulate souvenirs relevant to selected team name.
+    //!< populate souvenirs relevant to selected team name
+
     ~vSimulation();
 
 private slots:
+
+
     void on_cancelButton_clicked();
 
-    void on_endButton_clicked();
+    void on_endVacationButton_clicked();
+
+
+
+    void on_confirmSouvenirButton_clicked();
+
+    void on_nextDestButton_clicked();
 
 private:
     Ui::vSimulation *ui;
     QSqlDatabase myDB;
+
+    QString* destinations = nullptr;
+                                /*!< Pointer for dynamic destination list */
+    double* distances = nullptr;   /*!< Pointer for dynamic distance list*/
+    QString currTeam;           /*!< Current team being visited */
+    //int currDistance;           /*!< Distance from last to current team */
+    int totalDistance;          /*!< Total distance traveled thus far */
+    double currCost;             /*!< Cost of souvenirs at current team */
+    double totalCost;            /*!< Souvenir cost in simulation thus far */
+    int total;                  /*!< Number of destinations for simulation */
+    int index;                  /*!< Used to locate index of current team */
+    QFont font;                 /*!< Modified font attributes in QListView */
 };
 
 #endif // VSIMULATION_H
