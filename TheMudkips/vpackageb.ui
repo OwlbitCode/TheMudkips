@@ -79,8 +79,8 @@ color: black;</string>
    <widget class="QLabel" name="distanceLabel">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>440</y>
+      <x>30</x>
+      <y>444</y>
       <width>131</width>
       <height>25</height>
      </rect>
@@ -116,10 +116,10 @@ color: black;</string>
   <widget class="QLabel" name="titleLabel">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>561</width>
-     <height>40</height>
+     <x>24</x>
+     <y>-6</y>
+     <width>559</width>
+     <height>43</height>
     </rect>
    </property>
    <property name="font">
@@ -154,7 +154,31 @@ color: black;</string>
     <string>Cancel</string>
    </property>
   </widget>
+  <widget class="QLabel" name="mudkipLabel">
+   <property name="geometry">
+    <rect>
+     <x>-6</x>
+     <y>42</y>
+     <width>265</width>
+     <height>511</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="images.qrc">:/images/verticalMudkip.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

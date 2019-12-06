@@ -22,8 +22,10 @@ public:
 
 private slots:
     void on_viewAllButton_clicked();
+    //!< View all teams and their coaches
 
     void on_coachCB_currentIndexChanged();
+    //!< Populates a single team and coached based on coach selection
 
 private:
     Ui::nbaCoaches *ui;

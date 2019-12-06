@@ -103,7 +103,7 @@ color:black;</string>
     </font>
    </property>
    <property name="text">
-    <string>Shortest Distance starting from the Los Angeles Lakers (using DFS)</string>
+    <string>Shortest Distance starting from Orlando Magic  (using DFS)</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

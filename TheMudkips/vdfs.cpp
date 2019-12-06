@@ -1,6 +1,18 @@
 #include "vdfs.h"
 #include "ui_vdfs.h"
 
+/****************************************************************************
+ * CONSTRUCTOR
+ * --------------------------------------------------------------------------
+ * Displays default view for window.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      Database class created to connect to database.
+ *
+ * POST-CONDITIONS
+ *      ==> Displays default view.
+ ***************************************************************************/
+
 vDFS::vDFS(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::vDFS)
@@ -12,9 +24,6 @@ vDFS::vDFS(QWidget *parent) :
     rootIndex = 0;
     bool isFound = false;
     tDistance = 0; //set distance to 0
-
-
-
 
     getNumTeams(); //get number of teams
 //    qDebug()<< "numTeams: " << numTeams;
@@ -56,7 +65,17 @@ vDFS::vDFS(QWidget *parent) :
 
      ui->distanceLine->setText(QString::number(tDistance, 'f',2));
 }
-
+/****************************************************************************
+ * Destructor
+ * --------------------------------------------------------------------------
+ * Deletes UI and removes memomry from heap for dynamic array
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      Database class created to connect to database.
+ *
+ * POST-CONDITIONS
+ *      ==> Displays default view.
+ ***************************************************************************/
 vDFS::~vDFS()
 {
 
@@ -133,7 +152,17 @@ void vDFS::getTeamList()
 
 }
 
-
+/****************************************************************************
+ * createAdjList
+ * --------------------------------------------------------------------------
+ * Creates adjacency list to store weighted edges
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> Weighted edges added to adj list
+ ***************************************************************************/
 void vDFS::createAdjList()
 {
 
@@ -202,7 +231,17 @@ void vDFS::createAdjList()
     }
 }
 
-
+/****************************************************************************
+ * DFS
+ * --------------------------------------------------------------------------
+ * Completes a depth first search traversal starting from Orlando Magic
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> DFS complete. Total distance calculated.
+ ***************************************************************************/
 void vDFS::DFS(int start)
 {
 

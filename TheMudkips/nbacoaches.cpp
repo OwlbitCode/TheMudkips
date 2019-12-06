@@ -38,6 +38,18 @@ nbaCoaches::~nbaCoaches()
     delete ui;
 }
 
+
+/****************************************************************************
+ * on_viewAllButton_clicked()
+ * --------------------------------------------------------------------------
+ * Sets view to all teams and their corresponding coaches
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> outputs all teams and their corresponding coaches
+ ***************************************************************************/
 void nbaCoaches::on_viewAllButton_clicked()
 {
     myDB = QSqlDatabase::database();
@@ -63,6 +75,17 @@ void nbaCoaches::on_viewAllButton_clicked()
 
 }
 
+/****************************************************************************
+ * on_coachCB_currentIndexChanged()
+ * --------------------------------------------------------------------------
+ * Sets view to a specific team and coach based on coach selection
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> outputs selected team and its corresponding coach
+ ***************************************************************************/
 void nbaCoaches::on_coachCB_currentIndexChanged()
 {
 

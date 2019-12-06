@@ -24,9 +24,14 @@ public:
     explicit vDFS(QWidget *parent = nullptr);
     ~vDFS();
     void getNumTeams();
+    //!< Gets number of teams (distinct) in the distance db
     void getTeamList();
+    //!< Creates master list of distinct team names asc order
     void createAdjList();
+    //!< Populates adjacency list with weighted edges
     void DFS(int start);
+    //!< Do the depth first search and display to list
+    //!< Also calculate total distance and display
 
 private:
     Ui::vDFS *ui;
@@ -43,11 +48,11 @@ private:
 
     int V;                  /*!< vertices*/
 
-    std::vector<std::pair<int,float>> * adj; //adjacency list poinnter
+    std::vector<std::pair<int,float>> * adj; /*!< adjacency list pointer */
 
     //int visited[12]={0};
 
-    int * vis;//declare pointer to vistied array
+    int * vis;//declare pointer to visited array
 };
 
 #endif // VDFS_H

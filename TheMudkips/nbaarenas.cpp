@@ -33,6 +33,20 @@ nbaArenas::~nbaArenas()
     delete ui;
 }
 
+/****************************************************************************
+ * on_arenaButton_clicked()
+ * --------------------------------------------------------------------------
+ * Displays all teams, arenas and seating capacities sorted by arena in alphabetical
+ * order.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> outputs all teams, arenas and seating capacities sorted by arena
+ * in alphabetical order
+ ***************************************************************************/
+
 void nbaArenas::on_arenaButton_clicked()
 {
        myDB = QSqlDatabase::database();
@@ -60,7 +74,19 @@ void nbaArenas::on_arenaButton_clicked()
        model->setHeaderData(2, Qt::Horizontal, QObject::tr("Seating Capacity"));
 
 }
-
+/****************************************************************************
+ * on_stadiumCapacityButton_clicked()
+ * --------------------------------------------------------------------------
+ * Displays all teams, arenas and seating capacities sorted by seating capacity
+ * lowest to highest.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> outputs all teams, arenas and seating capacities sorted by seating capacity
+ * lowest to highest.
+ ***************************************************************************/
 void nbaArenas::on_stadiumCapacityButton_clicked()
 {
     myDB = QSqlDatabase::database();
@@ -87,7 +113,17 @@ void nbaArenas::on_stadiumCapacityButton_clicked()
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("Arena Name"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Team Name"));
 }
-
+/****************************************************************************
+ * totalCapacity()
+ * --------------------------------------------------------------------------
+ * Calculates total seating capacity
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> outputs total seating capacity
+ ***************************************************************************/
 void nbaArenas::totalCapacity()
 {
     total = 0;
@@ -106,6 +142,17 @@ void nbaArenas::totalCapacity()
     ui->totalLabel1->setNum(total);
 }
 
+/****************************************************************************
+ * on_arenaCB_currentIndexChanged()
+ * --------------------------------------------------------------------------
+ * Displays one team, arena and seating capcity based on arena selected.
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> outputs one team, arena and seating capacity based on arena selected.
+ ***************************************************************************/
 void nbaArenas::on_arenaCB_currentIndexChanged()
 {
 
