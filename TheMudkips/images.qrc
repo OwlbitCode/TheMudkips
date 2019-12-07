@@ -14,5 +14,8 @@
         <file>images/nbainfoimg.png</file>
         <file>images/index.jfif</file>
         <file>images/verticalMudkip.png</file>
+        <file>images/poliwhirl.wav</file>
+        <file>images/mudkipSound.mp3</file>
+        <file>images/mudkipSound.wav</file>
     </qresource>
 </RCC>

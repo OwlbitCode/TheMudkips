@@ -1,5 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
+#include <QSound>
 
 Login::Login(QWidget *parent) :
     QWidget(parent),
@@ -86,6 +87,12 @@ void Login::on_loginButton_clicked()
     QString username;   //IN, CALC - username
     QString password;   //IN, CALC - password
 
+    //sound testing begin
+
+    QSound::play(":/images/mudkipSound.wav");
+
+    //sound testing end
+
     username = ui->usernameLineEdit->text();
     password = ui->passwordLineEdit->text();
 
@@ -101,6 +108,7 @@ void Login::on_loginButton_clicked()
         connectToDB();
         vacationWindow = new Vacation();
         vacationWindow->show();
+
     }
     // Swap below if statements when changing functionality
     //else if(username == "admin" && password == "456")
