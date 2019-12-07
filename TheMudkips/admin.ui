@@ -23,19 +23,6 @@
     </rect>
    </property>
    <widget class="QWidget" name="homePage">
-    <widget class="QLabel" name="homeTitle">
-     <property name="geometry">
-      <rect>
-       <x>60</x>
-       <y>80</y>
-       <width>91</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>home page</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>

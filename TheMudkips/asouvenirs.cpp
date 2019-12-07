@@ -43,6 +43,8 @@ void aSouvenirs::on_addSouvenir_clicked()
     double money = ui->addMoney->value();
 
 
+    int weight = 0;
+
     //name cant be empty or existing
     //team has to be valid
     //money cant be negative
@@ -73,6 +75,10 @@ void aSouvenirs::on_addSouvenir_clicked()
 
 //    qry->clear();
     qDebug() << money;
+
+    Map<QString, int>* myMap = new Map<QString, int>;
+    myMap->set(name,weight);
+    ui->souvName->setText(myMap->update(name,weight));
 
     qry->prepare("insert into '"+team+"' (item, price) values (?,?)");
     qry->addBindValue(name);

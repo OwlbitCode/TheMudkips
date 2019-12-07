@@ -17,16 +17,19 @@ class nbaSouvenirs : public QWidget
 
 public:
     explicit nbaSouvenirs(QWidget *parent = nullptr);
+     //!< constructor
+
     ~nbaSouvenirs();
+     //!< destructor
 
 private slots:
     void on_teamTable_currentTextChanged(const QString &currentText);
     //!< Updates team name label and souvenir prices for the selected team
 
 private:
-    Ui::nbaSouvenirs *ui;   //!< Souvenirs window object
+    Ui::nbaSouvenirs *ui;   /*!< class object */
 
-    QSqlDatabase myDB;      //!< Database connection object
+    QSqlDatabase myDB;      /*!< database connection object */
 };
 
 #endif // NBASOUVENIRS_H
