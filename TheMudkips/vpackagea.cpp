@@ -60,7 +60,7 @@ void vPackageA::on_cancelButton_clicked()
 
 void vPackageA::on_startButton_clicked()
 {
-    simulationWindow = new vSimulation;
+    simulationWindow = new vSimulation(sortedTeams,sortedDistance,2);
     simulationWindow->show();
 
     this->close();
