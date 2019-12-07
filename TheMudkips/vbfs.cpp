@@ -249,7 +249,8 @@ void vBFS::BFS()
     std::vector<bool> visited(numTeams,false); // tracks visited status
     std::vector<int> q;                        // query
     std::vector<std::tuple<int, int, float>> temp; // u, v, wt
-    int u, v, wt;  // u and v are the vertex and wt is the weighted edge
+    int u, v;      // u and v are the vertex
+    float wt;      // the weighted edge
     int vis;       // current team being visited (u)
     QString tempStr;  // used for temporary holding a string value
 

@@ -49,7 +49,7 @@ private:
     float   distance;       /*!< distance between u and v    : wt   */
     int     numTeams;       /*!< number of teams             : V    */
     int     rootIndex;      /*!< starting team index for BFS : root */
-    int     tDistance;      /*!< bfs total distance */
+    float   tDistance;      /*!< bfs total distance */
 
     std::string *teamList;  /*!< array (master) list of team names */
     float       **adj;            /*!< adjacency matrix for weighted edges */
