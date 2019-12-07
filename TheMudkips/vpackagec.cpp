@@ -613,7 +613,7 @@ void vPackageC::on_cancelButton_clicked()
  ***************************************************************************/
 void vPackageC::on_startButton_clicked()
 {
-    simulationWindow = new vSimulation;
+    simulationWindow = new vSimulation(sortedTeams, sortedDistance, teamNum);
     simulationWindow->show();
 
     this->close();
