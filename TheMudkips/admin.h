@@ -17,25 +17,33 @@ class Admin : public QWidget
 
 public:
     explicit Admin(QWidget *parent = nullptr);
+    //!< constructor
+
     ~Admin();
+    //!< destructor
 
 private slots:
     void on_homeButton_clicked();
+    //!< show home page
 
     void on_page1Button_clicked();
+    //!< show admin team window
 
     void on_page2Button_clicked();
+    //!< show add team window
 
     void on_exitButton_clicked();
+    //!< show souvenir window
 
     void on_page3Button_clicked();
+    //!< close admin window
 
 private:
-    Ui::Admin *ui;
+    Ui::Admin *ui;  /*!< admin class object */
 
-    aTeam teamWindow;
-    aArena arenaWindow;
-    aSouvenirs souvenirsWindow;
+    aTeam teamWindow;           /*!< admin team information object */
+    aArena arenaWindow;         /*!< admin arena object */
+    aSouvenirs souvenirsWindow; /*!< admin souvenirs object */
 };
 
 #endif // ADMIN_H

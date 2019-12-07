@@ -91,7 +91,7 @@ void Login::on_loginButton_clicked()
 
     // Swap below if statements when changing functionality
     //if(username == "fan" && password == "123")
-    if(username == "fan")
+    if(username == "fan" && password == "123")
     {
         ui->passwordLineEdit->setText("");
         ui->usernameLineEdit->setText("");
@@ -104,7 +104,7 @@ void Login::on_loginButton_clicked()
     }
     // Swap below if statements when changing functionality
     //else if(username == "admin" && password == "456")
-    else if(username == "admin")
+    else if(username == "admin" && password == "456")
     {
         ui->passwordLineEdit->setText("");
         ui->usernameLineEdit->setText("");

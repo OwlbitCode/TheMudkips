@@ -212,6 +212,7 @@ void vSimulation::on_nextDestButton_clicked()
 
         ui->endVacationButton->setEnabled(true);
         ui->goodbyeLabel->setVisible(true);
+        ui->confirmSouvenirButton->setVisible(false); //make sure you can't click confirm anymore
         //ui->endVacationButton->setEnabled(false);
     }
 }
