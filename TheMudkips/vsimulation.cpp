@@ -7,7 +7,6 @@ vSimulation::vSimulation(QWidget *parent) :
     ui(new Ui::vSimulation)
 {
     ui->setupUi(this);
-
 }
 
 vSimulation::vSimulation(QString *tList, double *dList, int t, QWidget *parent):
@@ -21,11 +20,35 @@ vSimulation::vSimulation(QString *tList, double *dList, int t, QWidget *parent):
     totalCost = 0;
     totalDistance = 0;
     currCost = 0;
-    qDebug() << "TOTAL: " << total;
+    //qDebug() << "TOTAL: " << total;
     ui->endVacationButton->setEnabled(false);
     ui->goodbyeLabel->setVisible(false);
     defaultTeamList();
     updateSouvenirs();
+
+    QString currBegTeam = destinations[0];
+    //qDebug()<< "curr Beg Team" << currBegTeam;
+
+     QSqlQuery * qry0 = new QSqlQuery(myDB);
+
+     QString tempTeam;
+
+    qry0->prepare("SELECT * "
+                 "FROM 'Team Info' "
+                 "WHERE `Team Name` = '"+currBegTeam+"' ");
+
+    // Execute query if valid
+    if(qry0->exec())
+    {
+        //qDebug()<<"Qry executing?";
+       while(qry0->next())
+       {
+
+            ui->currArenaLabel_3->setText(qry0->value(4).toString());
+
+       }
+    }
+
 }
 
 vSimulation::~vSimulation()
@@ -45,13 +68,25 @@ void vSimulation::on_endVacationButton_clicked()
     this->close();
 }
 
+/****************************************************************************
+ * default Team List
+ * --------------------------------------------------------------------------
+ * populates team list widget from passed destinations array
+ * --------------------------------------------------------------------------
+ * PRE-CONDITIONS
+ *      myDB is is open and connected
+ *
+ * POST-CONDITIONS
+ *      ==> populated team list widget
+ ***************************************************************************/
+
 void vSimulation::defaultTeamList()
 {
 
     for(int i =0; i < total; i++)
     {
         ui->destinationWidget->addItem(destinations[i]);
-        qDebug() << "LOOK: " << destinations[i];
+        //qDebug() << "LOOK: " << destinations[i];
     }
 
 
@@ -80,7 +115,7 @@ void vSimulation::updateSouvenirs()
         {
 
             rowCount++;
-            qDebug() << "ROW COUNT " << rowCount;
+            //qDebug() << "ROW COUNT " << rowCount;
 
         }
     }
@@ -118,9 +153,9 @@ void vSimulation::updateSouvenirs()
           //item2->setFlags(item2->flags() ^ Qt::ItemIsEnabled);
           //item2->setTextColor(Qt::black);
           item1->setText(qry.value(0).toString());
-          qDebug()<< "item 1: " << qry.value(0).toString();
+          //qDebug()<< "item 1: " << qry.value(0).toString();
           item2->setText(QString::number(qry.value(1).toDouble(), 'f', 2));
-          qDebug() << "item 2: " <<qry.value(1).toFloat();
+          //qDebug() << "item 2: " <<qry.value(1).toFloat();
 
           // Populate one row of the souvenirTableWidget
           ui->souvenirTableWidget->setCellWidget(row,0, new QSpinBox(ui->souvenirTableWidget));
@@ -131,6 +166,36 @@ void vSimulation::updateSouvenirs()
 
         }
     }
+
+    //new
+
+    /*///////////////////////////////////////*/
+    QSqlQuery * qry1 = new QSqlQuery(myDB);
+    QString tempString;
+
+
+
+        // Set up the query to create ordered list of teams
+        qry1->prepare("SELECT * "
+                     "FROM Distances "
+                     "WHERE `Beg Team` = '"+currTeam+"' ");
+
+        // Execute query if valid
+        if(qry1->exec())
+        {
+            //qDebug()<<"Qry executing?";
+           while(qry1->next())
+           {
+
+               //qDebug()<<"ARENA QRY VALUE 4";
+               ui->currArenaLabel_3->setText(qry1->value(1).toString());
+
+           }
+
+        } //end if
+
+    //new
+
 
     ui->nextDestButton->setEnabled(false);//disable next destination button
 
@@ -150,7 +215,7 @@ void vSimulation::on_confirmSouvenirButton_clicked()
         itemQty = ui->souvenirTableWidget->cellWidget(i,0)->property("value").value<int>();
         itemPrice = (ui->souvenirTableWidget->item(i,2)->text()).toFloat();
         currCost = currCost + (itemQty * itemPrice);
-        qDebug() << itemQty << " " << currCost;
+        //qDebug() << itemQty << " " << currCost;
     i++;
     }
     ui->currDestCostLine->setText(QString::number(currCost));
@@ -172,8 +237,12 @@ void vSimulation::on_nextDestButton_clicked()
         ui->destinationWidget->item(index)->setForeground(Qt::black);
         ui->destinationWidget->item(index)->setBackground(Qt::white);
 
-        // Update Index
+
+
+
         index++;
+
+
 
         // Set current dest to active in listWidget
         font.setBold(true);

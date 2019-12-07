@@ -36,14 +36,16 @@ private slots:
 
 
     void on_cancelButton_clicked();
+     //!< closes out travel simulation window
 
     void on_endVacationButton_clicked();
-
-
+     //!< Triggers end of simulation and prints out end vacation message
 
     void on_confirmSouvenirButton_clicked();
+    //!< Confirms souvenirs and quantities selected
 
     void on_nextDestButton_clicked();
+    //!< Moves simulation to the next destination.
 
 private:
     Ui::vSimulation *ui;
@@ -60,6 +62,7 @@ private:
     int total;                  /*!< Number of destinations for simulation */
     int index;                  /*!< Used to locate index of current team */
     QFont font;                 /*!< Modified font attributes in QListView */
+
 };
 
 #endif // VSIMULATION_H
