@@ -18,7 +18,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>231</width>
+     <width>781</width>
      <height>31</height>
     </rect>
    </property>
@@ -28,7 +28,7 @@
      <pointsize>22</pointsize>
      <weight>75</weight>
      <bold>true</bold>
-     <underline>true</underline>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -39,9 +39,9 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>380</y>
-     <width>151</width>
-     <height>41</height>
+     <y>400</y>
+     <width>211</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
@@ -51,8 +51,8 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>120</y>
+     <x>130</x>
+     <y>160</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -64,38 +64,48 @@
   <widget class="QTableView" name="tableView">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>290</x>
      <y>50</y>
-     <width>471</width>
-     <height>391</height>
+     <width>501</width>
+     <height>441</height>
     </rect>
    </property>
   </widget>
   <widget class="QComboBox" name="ArenaBox_1">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>60</y>
-     <width>151</width>
+     <x>10</x>
+     <y>80</y>
+     <width>271</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QComboBox" name="TeamBox">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>220</y>
-     <width>151</width>
-     <height>31</height>
+     <x>10</x>
+     <y>260</y>
+     <width>271</width>
+     <height>30</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>90</y>
+     <x>130</x>
+     <y>120</y>
      <width>151</width>
      <height>31</height>
     </rect>
@@ -104,8 +114,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>158</x>
-     <y>70</y>
+     <x>10</x>
+     <y>60</y>
      <width>91</width>
      <height>20</height>
     </rect>
@@ -113,48 +123,48 @@
    <property name="font">
     <font>
      <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
-     <underline>true</underline>
+     <pointsize>10</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
-    <string>Choose Arena</string>
+    <string>Select Arena</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>90</y>
-     <width>91</width>
+     <x>10</x>
+     <y>120</y>
+     <width>111</width>
      <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
-     <underline>true</underline>
+     <pointsize>10</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
-    <string>Enter Cap</string>
+    <string>New Capacity</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>260</y>
-     <width>221</width>
+     <y>300</y>
+     <width>271</width>
      <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
-     <underline>true</underline>
+     <pointsize>10</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -164,17 +174,17 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>220</y>
-     <width>91</width>
+     <x>10</x>
+     <y>240</y>
+     <width>261</width>
      <height>20</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
-     <underline>true</underline>
+     <pointsize>10</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -185,7 +195,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>300</y>
+     <y>335</y>
      <width>51</width>
      <height>16</height>
     </rect>
@@ -193,8 +203,8 @@
    <property name="font">
     <font>
      <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
-     <underline>true</underline>
+     <pointsize>10</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -204,41 +214,51 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>330</y>
-     <width>51</width>
+     <x>105</x>
+     <y>365</y>
+     <width>71</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
-     <underline>true</underline>
+     <pointsize>10</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
-    <string>Cap:</string>
+    <string>Capacity:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="ArenaName">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>300</y>
-     <width>181</width>
-     <height>20</height>
+     <x>70</x>
+     <y>330</y>
+     <width>211</width>
+     <height>25</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLineEdit" name="ArenaCap">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>330</y>
-     <width>71</width>
-     <height>20</height>
+     <x>190</x>
+     <y>360</y>
+     <width>91</width>
+     <height>25</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
  </widget>

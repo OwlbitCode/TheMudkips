@@ -132,7 +132,8 @@ void aTeam::on_pushButton_2_clicked() //add a team
         //---------------------------------------------------------
         auto excel     = new QAxObject("Excel.Application");
         auto workbooks = excel->querySubObject("Workbooks");
-        auto workbook  = workbooks->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Information"); //WHERE EXCEL FILE IS CHANGE HERE****
+        auto workbook  = workbooks->querySubObject("Open(const QString&)","C:\\Users\\Juli\\Documents\\CS1DProject2\\TheMudkips\\files\\NBA Information");
+//        auto workbook  = workbooks->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Information"); //WHERE EXCEL FILE IS CHANGE HERE****
         auto sheets    = workbook->querySubObject("Worksheets");
         auto sheet     = sheets->querySubObject("Item(int)", 1);    // use first worksheet
         qDebug()<<"made it past the setup stage";
@@ -186,7 +187,9 @@ void aTeam::on_pushButton_2_clicked() //add a team
 
         auto excel2     = new QAxObject("Excel.Application");
         auto workbooks2 = excel2->querySubObject("Workbooks");
-        auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Distances"); //WHERE EXCEL FILE IS CHANGE HERE****
+
+        auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\Juli\\Documents\\CS1DProject2\\TheMudkips\\files\\NBA Distances");
+//        auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Distances"); //WHERE EXCEL FILE IS CHANGE HERE****
         auto sheets2   = workbook2->querySubObject("Worksheets");
         auto sheet2     = sheets2->querySubObject("Item(int)", 2);
 
