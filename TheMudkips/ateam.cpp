@@ -139,4 +139,124 @@ void aTeam::on_pushButton_3_clicked() //Delete a team
 void aTeam::on_pushButton_2_clicked() //add a team
 {
 
-}
+
+    //1)access the file
+        //2)insert stuff into distances table in database
+        //3)create the 2 new tables for the cities and insert food in database
+        //4)refresh the qtableview
+
+        //---------------------------------------------------------
+        // ***1)and 2)read the both new cities and their distances***
+        //---------------------------------------------------------
+        auto excel     = new QAxObject("Excel.Application");
+        auto workbooks = excel->querySubObject("Workbooks");
+        auto workbook  = workbooks->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Information"); //WHERE EXCEL FILE IS CHANGE HERE****
+        auto sheets    = workbook->querySubObject("Worksheets");
+        auto sheet     = sheets->querySubObject("Item(int)", 1);    // use first worksheet
+        qDebug()<<"made it past the setup stage";
+        //------------ DOES TEAM INFO
+
+        for (int r = 34; (r <= 34); ++r) //GRABS EACH CELL FROM THESE ROWS
+        {
+            qDebug()<<"very begining";
+            auto cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,1);
+            QString conference = cCell->dynamicCall("Value()").toString();
+            qDebug()<<conference;
+                 cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,2);
+            QString division = cCell->dynamicCall("Value()").toString();
+            qDebug()<<division;
+                 cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,3);
+            QString teamName = cCell->dynamicCall("Value()").toString();
+            qDebug()<<teamName;
+                cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,4);
+            QString location = cCell->dynamicCall("Value()").toString();
+            qDebug()<<location;
+                cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,5);
+            QString arenaName = cCell->dynamicCall("Value()").toString();
+            qDebug()<<arenaName;
+                cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,6);
+            QString stadiumCapacity = cCell->dynamicCall("Value()").toString();
+            qDebug()<<stadiumCapacity;
+            cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,7);
+            QString joinedLeague = cCell->dynamicCall("Value()").toString();
+            qDebug()<<joinedLeague;
+            cCell = sheet->querySubObject("Cells(string,string,string,string,string,string,string,string)",r,8);
+             QString coach = cCell->dynamicCall("Value()").toString();
+             qDebug()<<coach;
+
+
+
+            QSqlQuery* query = new QSqlQuery(myDb);
+            query->prepare("insert into 'Team Info' (`Conference`, `Division`, `Team Name`, `Location`, `Arena Name`, `Stadium Capacity`, `Joined League`, `Coach`) values ('"+conference+"','"+division+"','"+teamName+"','"+location+"','"+arenaName+"','"+stadiumCapacity+"','"+joinedLeague+"','"+coach+"')"); //for some reason this does not add to the database
+            if(query->exec()){
+                qDebug()<<"Changes Made PART 1";
+
+            }
+            else{qDebug()<<"Changes failed PART 1";
+            query->lastError();}
+
+        }
+        qDebug()<<"made it past team info shit";
+
+        //-------------------- DOES DISTANCES
+
+        auto excel2     = new QAxObject("Excel.Application");
+        auto workbooks2 = excel2->querySubObject("Workbooks");
+        auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Distances"); //WHERE EXCEL FILE IS CHANGE HERE****
+        auto sheets2   = workbook2->querySubObject("Worksheets");
+        auto sheet2     = sheets2->querySubObject("Item(int)", 2);
+
+        for (int r = 2; (r <= 5); ++r) //GRABS EACH CELL FROM THESE ROWS
+        {
+            auto cCell = sheet2->querySubObject("Cells(string,string,string,string)",r,1);
+            QString begTeamName = cCell->dynamicCall("Value()").toString();
+                 cCell = sheet2->querySubObject("Cells(string,string,string,string)",r,2);
+            QString begArena = cCell->dynamicCall("Value()").toString();
+                 cCell = sheet2->querySubObject("Cells(string,string,string,string)",r,3);
+            QString endTeamName = cCell->dynamicCall("Value()").toString();
+                cCell = sheet2->querySubObject("Cells(string,string,string,string)",r,4);
+            QString distances = cCell->dynamicCall("Value()").toString();
+
+
+            QSqlQuery* query = new QSqlQuery(myDb);
+            query->prepare("insert into 'Distances' (`Beg Team`, `Beg Arena`, `End Team`, `Distance`) values ('"+begTeamName+"','"+begArena+"','"+endTeamName+"','"+distances+"')"); //for some reason this does not add to the database
+            if(query->exec()){
+                qDebug()<<"Changes Made PART 2";
+            }
+            else{qDebug()<<"Changes failed PART 2";
+            query->lastError();}
+        }
+
+        //----------------------- DOES SHOP
+
+        if(true)
+        {
+            QSqlQuery* query = new QSqlQuery(myDb);
+            query->prepare("CREATE TABLE 'Seattle Supersonics Shop' (item TEXT, price INTEGER)");
+            if(query->exec()){
+                qDebug()<<"Changes Made";
+
+            }
+            else{qDebug()<<"Changes failed";
+            query->lastError();}
+
+
+            QString items[] = {"Autographed Basketball","Team Pennant","Team Pennant","Team Jersey" };
+            double prices[] = {49.89,17.99,29.99,179.79};
+
+            for (int r = 0; (r < 4); ++r) //just reads Stockholm stuff from DB
+            {
+                QSqlQuery query;
+                query.prepare("insert into 'Seattle Supersonics Shop' (item, price) values ('"+items[r]+"','"+QString::number(prices[r])+"')");
+
+                if(query.exec()){
+                    qDebug()<<"Changes Made Part 3";
+                }
+                else{qDebug()<<"Changes failed Part 3";
+                query.lastError();}
+            }
+        }
+
+
+    }
+

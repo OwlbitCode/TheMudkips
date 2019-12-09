@@ -5,8 +5,8 @@
 #include <QWidget>
 #include"databasemanager.h"
 #include"addteam.h"
-#include<QtSql>
 #include<iostream>
+#include<qaxobject.h>
 namespace Ui {
 class aTeam;
 }
