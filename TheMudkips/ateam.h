@@ -16,25 +16,23 @@ class aTeam : public QWidget
     Q_OBJECT
 
 public:
-    explicit aTeam(QWidget *parent = nullptr);
-    ~aTeam();
+    explicit aTeam(QWidget *parent = nullptr); //!< Constructor
+    ~aTeam();   //!< Detructor
 
 private slots:
 
-    void on_tableView_activated(const QModelIndex &index);
+    void on_comboBox_currentIndexChanged(const QString &arg1); //!< collects and displays team info for editing
 
-    void on_comboBox_currentIndexChanged(const QString &arg1);
+    void on_pushButton_clicked();//!< Update 'Team Info' in DB
 
-    void on_pushButton_clicked();
+    void on_pushButton_3_clicked();//!< Delete selected team from DB
 
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_2_clicked();
+    void on_pushButton_2_clicked();//!< Add a new team from input file into DB
 
 private:
-    Ui::aTeam *ui;
-    QSqlDatabase myDb;
-    addTeam window;
+    Ui::aTeam *ui; //!< class object
+    QSqlDatabase myDb; //!< database connection
+    addTeam window; //!< optional utility dialog box
 };
 
 #endif // ATEAM_H
