@@ -127,12 +127,6 @@ void aTeam::on_pushButton_3_clicked() //Delete a team
 void aTeam::on_pushButton_2_clicked() //add a team
 {
 
-
-    //1)access the file
-        //2)insert stuff into distances table in database
-        //3)create the 2 new tables for the cities and insert food in database
-        //4)refresh the qtableview
-
         //---------------------------------------------------------
         // ***1)and 2)read the both new cities and their distances***
         //---------------------------------------------------------
@@ -185,8 +179,8 @@ void aTeam::on_pushButton_2_clicked() //add a team
 
         }
         qDebug()<<"made it past team info shit";
-        //excel->dynamicCall("Quit()");
-        //delete excel;
+        excel->dynamicCall("Quit()");
+        delete excel;
 
         //-------------------- DOES DISTANCES
 
@@ -216,8 +210,8 @@ void aTeam::on_pushButton_2_clicked() //add a team
             else{qDebug()<<"Changes failed PART 2";
             query->lastError();}
         }
-       // excel2->dynamicCall("Quit()");
-       //  delete excel2;
+        excel2->dynamicCall("Quit()");
+        delete excel2;
 
         //----------------------- DOES SHOP
 
@@ -236,7 +230,7 @@ void aTeam::on_pushButton_2_clicked() //add a team
             QString items[] = {"Autographed Basketball","Team Pennant","Team Pennant","Team Jersey" };
             double prices[] = {49.89,17.99,29.99,179.79};
 
-            for (int r = 0; (r < 4); ++r) //just reads Stockholm stuff from DB
+            for (int r = 0; (r < 4); ++r)
             {
                 QSqlQuery query;
                 query.prepare("insert into 'Seattle Supersonics Shop' (item, price) values ('"+items[r]+"','"+QString::number(prices[r])+"')");
@@ -248,7 +242,23 @@ void aTeam::on_pushButton_2_clicked() //add a team
                 query.lastError();}
             }
         }
+        //========refresh table=============================
+        QSqlQuery* query = new QSqlQuery(myDb);
+        QSqlQueryModel* model = new QSqlQueryModel;
+        query->prepare("select `Team Name` from 'Team Info'");
+        if(query->exec()){std::cout<<"query executed";}
+        else{std::cout<<"query failed";}
+        model->setQuery(*query);
+        ui->comboBox->setModel(model);
 
+        QSqlQuery* qry = new QSqlQuery(myDb);
+        QSqlQueryModel* mdl = new QSqlQueryModel;
+        qry->prepare("select * from 'Team Info'");
+        if(qry->exec()){std::cout<<"Tabel loaded";}
+        else{std::cout<<"Table failed to load";}
+        mdl->setQuery(*qry);
+        ui->tableView->setModel(mdl);
+        //===================================================
 
     }
 
