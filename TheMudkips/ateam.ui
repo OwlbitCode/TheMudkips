@@ -17,8 +17,8 @@
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>80</y>
-     <width>551</width>
+     <y>70</y>
+     <width>541</width>
      <height>371</height>
     </rect>
    </property>
@@ -26,17 +26,17 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>280</x>
      <y>20</y>
-     <width>211</width>
+     <width>511</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Open Sans Light</family>
+     <family>MS Shell Dlg 2</family>
      <pointsize>20</pointsize>
-     <underline>true</underline>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -48,29 +48,16 @@
     <rect>
      <x>10</x>
      <y>30</y>
-     <width>191</width>
+     <width>231</width>
      <height>22</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_4">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>430</y>
-     <width>80</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;- Return</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>300</y>
+     <x>60</x>
+     <y>310</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -82,7 +69,7 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>100</x>
      <y>60</y>
      <width>141</width>
      <height>20</height>
@@ -91,75 +78,99 @@
    <property name="text">
     <string/>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>70</x>
+     <x>80</x>
      <y>90</y>
      <width>161</width>
      <height>20</height>
     </rect>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_3">
    <property name="geometry">
     <rect>
-     <x>82</x>
+     <x>60</x>
      <y>120</y>
-     <width>151</width>
+     <width>181</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_4">
    <property name="geometry">
     <rect>
-     <x>72</x>
+     <x>80</x>
      <y>150</y>
      <width>161</width>
      <height>20</height>
     </rect>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_5">
    <property name="geometry">
     <rect>
-     <x>92</x>
+     <x>60</x>
      <y>180</y>
-     <width>141</width>
+     <width>181</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_6">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>160</x>
      <y>210</y>
-     <width>101</width>
+     <width>81</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_7">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>160</x>
      <y>240</y>
-     <width>141</width>
+     <width>81</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_8">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>60</x>
      <y>270</y>
      <width>181</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -174,8 +185,8 @@
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -194,8 +205,8 @@
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -207,19 +218,19 @@
     <rect>
      <x>10</x>
      <y>120</y>
-     <width>71</width>
+     <width>41</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
-    <string>Team Name</string>
+    <string>Team</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -227,15 +238,15 @@
     <rect>
      <x>10</x>
      <y>150</y>
-     <width>71</width>
+     <width>61</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -254,8 +265,8 @@
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -267,15 +278,15 @@
     <rect>
      <x>10</x>
      <y>240</y>
-     <width>101</width>
+     <width>141</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -287,19 +298,19 @@
     <rect>
      <x>10</x>
      <y>180</y>
-     <width>71</width>
+     <width>51</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
-    <string>Arena Name</string>
+    <string>Arena</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_9">
@@ -307,15 +318,15 @@
     <rect>
      <x>10</x>
      <y>210</y>
-     <width>121</width>
+     <width>141</width>
      <height>16</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>OCR A Extended</family>
-     <pointsize>11</pointsize>
-     <underline>true</underline>
+     <pointsize>8</pointsize>
+     <underline>false</underline>
     </font>
    </property>
    <property name="text">
@@ -325,9 +336,9 @@
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>380</y>
-     <width>121</width>
+     <x>130</x>
+     <y>410</y>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
@@ -338,27 +349,14 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>340</y>
-     <width>121</width>
+     <x>10</x>
+     <y>410</y>
+     <width>111</width>
      <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>DELETE TEAM</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>60</y>
-     <width>21</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
    </property>
   </widget>
  </widget>
