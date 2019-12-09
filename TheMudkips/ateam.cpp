@@ -32,18 +32,6 @@ aTeam::~aTeam()
 
 }
 
-void aTeam::on_tableView_activated(const QModelIndex &index)
-{
-    QString val = ui->tableView->model()->data(index).toString();
-
-
-    QSqlQuery qry;
-    qry.prepare("select * from Team Info where Team Name = '"+val+"' or Division = '"+val+"' or Conference = '"+val+"'"
-                     "or Location = '"+val+"' or Arena Name = '"+val+"' or Stadium Capacity = '"+val+"' or Joined League = '"+val+"' "
-                        "or Coach = '"+val+"'");
-
-}
-
 
 void aTeam::on_comboBox_currentIndexChanged(const QString &arg1) //loads team data into line_edits
 {
@@ -150,8 +138,7 @@ void aTeam::on_pushButton_2_clicked() //add a team
         //---------------------------------------------------------
         auto excel     = new QAxObject("Excel.Application");
         auto workbooks = excel->querySubObject("Workbooks");
-//        auto workbook  = workbooks->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Information"); //WHERE EXCEL FILE IS CHANGE HERE****
-        auto workbook  = workbooks->querySubObject("Open(const QString&)","C:\\Users\\Juli\\Documents\\CS1DProject2\\TheMudkips\\files\\NBA Information");
+        auto workbook  = workbooks->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Information"); //WHERE EXCEL FILE IS CHANGE HERE****
         auto sheets    = workbook->querySubObject("Worksheets");
         auto sheet     = sheets->querySubObject("Item(int)", 1);    // use first worksheet
         qDebug()<<"made it past the setup stage";
@@ -198,13 +185,14 @@ void aTeam::on_pushButton_2_clicked() //add a team
 
         }
         qDebug()<<"made it past team info shit";
+        //excel->dynamicCall("Quit()");
+        //delete excel;
 
         //-------------------- DOES DISTANCES
 
         auto excel2     = new QAxObject("Excel.Application");
         auto workbooks2 = excel2->querySubObject("Workbooks");
-//        auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Distances"); //WHERE EXCEL FILE IS CHANGE HERE****
-auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\Juli\\Documents\\CS1DProject2\\TheMudkips\\files\\NBA Distances");
+        auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\mrpou\\Desktop\\CS1D Project 2\\CS 1D Fall 2019 Basketball Project-4\\NBA Distances"); //WHERE EXCEL FILE IS CHANGE HERE****
         auto sheets2   = workbook2->querySubObject("Worksheets");
         auto sheet2     = sheets2->querySubObject("Item(int)", 2);
 
@@ -228,13 +216,15 @@ auto workbook2  = workbooks2->querySubObject("Open(const QString&)","C:\\Users\\
             else{qDebug()<<"Changes failed PART 2";
             query->lastError();}
         }
+       // excel2->dynamicCall("Quit()");
+       //  delete excel2;
 
         //----------------------- DOES SHOP
 
         if(true)
         {
             QSqlQuery* query = new QSqlQuery(myDb);
-            query->prepare("CREATE TABLE 'Seattle Supersonics Store' (item TEXT, price INTEGER)");
+            query->prepare("CREATE TABLE 'Seattle Supersonics Shop' (item TEXT, price INTEGER)");
             if(query->exec()){
                 qDebug()<<"Changes Made";
 
